@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum Direction { UP, DOWN, RIGHT, LEFT }
 
@@ -9,6 +7,11 @@ public class Boundaries
     public Vector2 m_minPosition;
     public Vector2 m_maxPosition;
 
+    public Boundaries()
+    {
+        m_minPosition = Vector2.zero;
+        m_maxPosition = Vector2.zero;
+    }
     public Boundaries(Vector2 _minPosition, Vector2 _maxPosition)
     {
         m_minPosition = _minPosition;
