@@ -9,7 +9,8 @@ public class CameraBehaviour : MonoBehaviour
 	public Camera cam;
 
 	public float cameraWidth;
-	float cameraHeight;
+    [HideInInspector]
+    public float cameraHeight { get; private set; }
 
 	public Transform target;
 
@@ -35,9 +36,11 @@ public class CameraBehaviour : MonoBehaviour
 		cameraHeight = cameraWidth * 0.5625f;
 	}
 
-	void FixedUpdate()
+    void FixedUpdate()
 	{
-		Vector3 smoothedPosition = Vector3.Lerp(transform.position, target.position, smoothSpeed);
+        UpdateBoundaries();
+
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, target.position, smoothSpeed);
 
         if (GameManager.instance == null)
         {
@@ -46,7 +49,7 @@ public class CameraBehaviour : MonoBehaviour
         }
         Boundaries worldBoundaries = GameManager.instance.worldBoundaries;
 
-        Vector2 cameraSizeOffset = new Vector2(cameraWidth / 2, cameraHeight / 2);
+        Vector2 cameraSizeOffset = new Vector2(-cameraWidth / 2.0f, -cameraHeight / 2.0f);
 
         left.enabled = worldBoundaries.DistanceToBoundary(Direction.LEFT, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
         right.enabled = worldBoundaries.DistanceToBoundary(Direction.RIGHT, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
@@ -56,4 +59,12 @@ public class CameraBehaviour : MonoBehaviour
 
         transform.position = smoothedPosition;
 	}
+
+    private void UpdateBoundaries()
+    {
+        cameraBoundaries.m_minPosition.x = transform.position.x - cameraWidth / 2.0f;
+        cameraBoundaries.m_minPosition.y = transform.position.y - cameraHeight / 2.0f;
+        cameraBoundaries.m_maxPosition.x = transform.position.x + cameraWidth / 2.0f;
+        cameraBoundaries.m_maxPosition.y = transform.position.y + cameraHeight / 2.0f;
+    }
 }
