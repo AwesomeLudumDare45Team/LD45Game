@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
 public enum Direction { UP, DOWN, RIGHT, LEFT }
 
+[System.Serializable]
 public class Boundaries
 {
     public Vector2 m_minPosition;
@@ -18,17 +20,26 @@ public class Boundaries
         m_maxPosition = _maxPosition;
     }
 
-    public bool IsInBoundaries(Vector2 _position, float _offset = 0)
+    public bool IsInBoundariesAll(Vector2 _position, float _offset = 0)
     {
-        return IsInBoundaries(_position, new Vector2(_offset, _offset));
+        return IsInBoundariesAll(_position, new Vector2(_offset, _offset));
     }
 
-    public bool IsInBoundaries(Vector2 _position, Vector2 _offset)
+    public bool IsInBoundariesAll(Vector2 _position, Vector2 _offset)
     {
-        return (DistanceToBoundary(Direction.UP, _position, _offset) > 0) 
-            && (DistanceToBoundary(Direction.DOWN, _position, _offset) > 0)
-            && (DistanceToBoundary(Direction.RIGHT, _position, _offset) > 0)
-            && (DistanceToBoundary(Direction.LEFT, _position, _offset) > 0);
+        return IsInBoundaries(Direction.UP, _position, _offset) 
+            && IsInBoundaries(Direction.DOWN, _position, _offset)
+            && IsInBoundaries(Direction.RIGHT, _position, _offset)
+            && IsInBoundaries(Direction.LEFT, _position, _offset);
+    }
+
+    public bool IsInBoundaries(Direction _direction, Vector2 _position, float _offset = 0)
+    {
+        return IsInBoundaries(_direction, _position, new Vector2(_offset, _offset));
+    }
+    public bool IsInBoundaries(Direction _direction, Vector2 _position, Vector2 _offset)
+    {
+        return DistanceToBoundary(_direction, _position, _offset) > 0;
     }
 
     // positive value -> is inside / negative -> is outside
@@ -61,5 +72,100 @@ public class Boundaries
         }
 
         return result;
+    }
+
+    // _offset always positive in this case
+    public Vector3 SnapPosition(Direction _direction, bool _inside, Vector3 _position, float _offset = 0)
+    {
+        return SnapPosition(_direction, _inside, _position, new Vector2(_offset, _offset));
+    }
+
+    public Vector3 SnapPosition(Direction _direction, bool _inside, Vector3 _position, Vector2 _offset)
+    {
+        Vector3 snapPosition = _position;
+
+        // Manage offset
+        if(_direction == Direction.UP || _direction == Direction.DOWN)
+        {
+            _offset.x = 0;
+            if (_direction == Direction.UP && _inside || _direction == Direction.DOWN && !_inside)
+                _offset.y = -_offset.y;
+        }
+
+        if (_direction == Direction.RIGHT || _direction == Direction.LEFT)
+        {
+            _offset.y = 0;
+            if (_direction == Direction.RIGHT && _inside || _direction == Direction.LEFT && !_inside)
+                _offset.x = -_offset.x;
+        }
+
+        // Add offset to value
+        switch (_direction)
+        {
+            case Direction.UP:
+                snapPosition.y = m_maxPosition.y + _offset.y;
+                break;
+            case Direction.DOWN:
+                snapPosition.y = m_minPosition.y + _offset.y;
+                break;
+            case Direction.RIGHT:
+                snapPosition.x = m_maxPosition.x + _offset.x;
+                break;
+            case Direction.LEFT:
+                snapPosition.x = m_minPosition.x + _offset.x;
+                break;
+            default:
+                break;
+        }
+
+        return snapPosition;
+    }
+
+    public Vector3 WrapPositionAll(Vector3 _position, float _offset = 0)
+    {
+        return WrapPositionAll(_position, new Vector2(_offset, _offset));
+    }
+
+    public Vector3 WrapPositionAll(Vector3 _position, Vector2 _offset)
+    {
+        Vector3 snapPosition = _position;
+
+        if (!IsInBoundaries(Direction.DOWN, snapPosition))
+            snapPosition = SnapPosition(Direction.UP, true, snapPosition, _offset);
+
+        if (!IsInBoundaries(Direction.UP, snapPosition))
+            snapPosition = SnapPosition(Direction.DOWN, true, snapPosition, _offset);
+
+        if (!IsInBoundaries(Direction.LEFT, snapPosition))
+            snapPosition = SnapPosition(Direction.RIGHT, true, snapPosition, _offset);
+
+        if (!IsInBoundaries(Direction.RIGHT, snapPosition))
+            snapPosition = SnapPosition(Direction.LEFT, true, snapPosition, _offset);
+
+        return snapPosition;
+    }
+
+    public Vector3 BoundPositionAll(Vector3 _position, float _offset = 0)
+    {
+        return BoundPositionAll(_position, new Vector2(_offset, _offset));
+    }
+
+    public Vector3 BoundPositionAll(Vector3 _position, Vector2 _offset)
+    {
+        Vector3 snapPosition = _position;
+
+        if (!IsInBoundaries(Direction.DOWN, snapPosition, _offset))
+            snapPosition = SnapPosition(Direction.DOWN, true, snapPosition, _offset);
+
+        if (!IsInBoundaries(Direction.UP, snapPosition, _offset))
+            snapPosition = SnapPosition(Direction.UP, true, snapPosition, _offset);
+
+        if (!IsInBoundaries(Direction.LEFT, snapPosition, _offset))
+            snapPosition = SnapPosition(Direction.LEFT, true, snapPosition, _offset);
+
+        if (!IsInBoundaries(Direction.RIGHT, snapPosition, _offset))
+            snapPosition = SnapPosition(Direction.RIGHT, true, snapPosition, _offset);
+
+        return snapPosition;
     }
 }

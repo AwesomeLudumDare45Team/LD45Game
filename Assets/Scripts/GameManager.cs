@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	public static GameManager instance;
+	public static GameManager instance { get; private set; }
+
+    public Boundaries worldBoundaries;
+
 
 	public Vector2 minBorder;
 	public Vector2 maxBorder;
@@ -16,7 +19,7 @@ public class GameManager : MonoBehaviour
 		if(drawBorder)
 		{
 			Gizmos.color = new Color(1.0f, 0.0f, 0.0f, 0.25f);
-			Gizmos.DrawCube(Vector3.zero, new Vector3(maxBorder.x - minBorder.x, maxBorder.y - minBorder.y, 0.1f));
+			Gizmos.DrawCube(Vector3.zero, new Vector3(worldBoundaries.m_maxPosition.x - worldBoundaries.m_minPosition.x, worldBoundaries.m_maxPosition.y - worldBoundaries.m_minPosition.y, 0.1f));
 		}
 	}
 
@@ -31,4 +34,9 @@ public class GameManager : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 	}
+
+    private void Update()
+    {
+        
+    }
 }

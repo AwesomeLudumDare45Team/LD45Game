@@ -15,7 +15,7 @@ public class WorldEffectBoundaries : WorldEffect
     public override void Execute()
     {
         gameObject.SetActive(true);
-        WorldManager wm = WorldManager.GetWorldManager();
+        WorldManager wm = WorldManager.m_instance;
 
         if(wm == null || wm.m_wallDown == null || wm.m_wallUp == null || wm.m_wallRight == null || wm.m_wallLeft == null)
         {

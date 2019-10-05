@@ -452,6 +452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b104b2fd144b56c40b43f9ea45b287cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldBoundaries:
+    m_minPosition: {x: -15, y: -5.625}
+    m_maxPosition: {x: 15, y: 5.625}
   minBorder: {x: -15, y: -5.625}
   maxBorder: {x: 15, y: 5.625}
   drawBorder: 1
@@ -720,11 +723,14 @@ MonoBehaviour:
   cameraWidth: 20
   target: {fileID: 639940440}
   smoothSpeed: 0.125
-  offset: {x: 0, y: 5, z: -10}
+  cameraPositionOffset: {x: 0, y: 0, z: -10}
   left: {fileID: 225626748}
   right: {fileID: 1224193623}
   bottom: {fileID: 1479437204}
   top: {fileID: 1898379592}
+  cameraBoundaries:
+    m_minPosition: {x: 0, y: 0}
+    m_maxPosition: {x: 0, y: 0}
 --- !u!1 &1479437202
 GameObject:
   m_ObjectHideFlags: 0

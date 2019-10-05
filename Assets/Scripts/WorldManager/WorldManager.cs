@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WorldManager : MonoBehaviour
 {
-    private static WorldManager m_instance;
+    public static WorldManager m_instance { get; private set; }
 
     public GameObject m_wallUp;
     public GameObject m_wallDown;
@@ -21,9 +21,5 @@ public class WorldManager : MonoBehaviour
         }
 
         m_instance = this;
-    }
-
-    public static WorldManager GetWorldManager(){
-        return m_instance;
     }
 }
