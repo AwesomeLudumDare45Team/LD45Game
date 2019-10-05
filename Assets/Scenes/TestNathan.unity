@@ -350,8 +350,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836331317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
-  m_LocalScale: {x: 25, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -1.5, z: 0.5}
+  m_LocalScale: {x: 25, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -501,7 +501,7 @@ PrefabInstance:
     - target: {fileID: 8176950235196231484, guid: dd9709ff99605c546ab26c5b5e423ef6,
         type: 3}
       propertyPath: m_Name
-      value: Main Camera
+      value: CameraAndUI
       objectReference: {fileID: 0}
     - target: {fileID: 8176950235196231487, guid: dd9709ff99605c546ab26c5b5e423ef6,
         type: 3}
@@ -516,7 +516,7 @@ PrefabInstance:
     - target: {fileID: 8176950235196231487, guid: dd9709ff99605c546ab26c5b5e423ef6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8176950235196231487, guid: dd9709ff99605c546ab26c5b5e423ef6,
         type: 3}
@@ -563,5 +563,21 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 639940440}
+    - target: {fileID: 8176950235196231473, guid: dd9709ff99605c546ab26c5b5e423ef6,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 8176950234285041305}
+    - target: {fileID: 8176950235196231473, guid: dd9709ff99605c546ab26c5b5e423ef6,
+        type: 3}
+      propertyPath: cameraPositionOffset.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd9709ff99605c546ab26c5b5e423ef6, type: 3}
+--- !u!20 &8176950234285041305 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8492054876596762245, guid: dd9709ff99605c546ab26c5b5e423ef6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8176950234285041304}
+  m_PrefabAsset: {fileID: 0}
