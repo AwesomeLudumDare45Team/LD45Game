@@ -4,25 +4,38 @@ using UnityEngine;
 
 public class EnvironmentLifeManager : MonoBehaviour
 {
+    public static EnvironmentLifeManager m_instance { get; private set; }
+
+
+
+
     public BirdFlock m_birdFlockPrefab;
 
     public bool m_birds;
     public bool m_butterflies;
+    public bool m_airplanes;
 
 
     public Vector2 m_birdsRandomSpawnTime;
     public Vector2 m_butterfliesRandomSpawnTime;
 
+    private void Awake()
+    {
+        if (m_instance != null)
+        {
+            Destroy(this);
+            return;
+        }
 
+        m_instance = this;
+    }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
     }

@@ -5,75 +5,121 @@ using UnityEngine;
 public class BirdFlock : MonoBehaviour
 {
     public GameObject m_prefabBird;
-    
 
-    public float m_oneBirdSpawnThickness; // Depend on number of birds
-
-    public float m_baseVelocity;
-
-
-    //TODO
-    public Camera m_camera;
+    public Vector2 m_boundOffset;
+    public Vector2 m_depthPositionRange;
+    public Vector2 m_baseHorizontalVelocityRange;
+    public Vector2Int m_flockSizeRange;
 
     [HideInInspector]
-    public List<Bird> m_birds;
-    [HideInInspector]
-    public Boundaries m_cameraBoundaries;
-    [HideInInspector]
-    public Boundaries m_worldBoundaries;
+    public List<Bird> m_birds = new List<Bird>();
 
-    // Start is called before the first frame update
-    void Start()
+    [HideInInspector]
+    public CameraBehaviour m_camera;
+
+    [HideInInspector]
+    public Direction m_direction;
+    [HideInInspector]
+    public float m_baseHorizontalVelocity;
+    [HideInInspector]
+    public int m_flockSize;
+
+    private void OnEnable()
     {
-        
+        m_camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraBehaviour>();
+        CreateFlock();
     }
 
-    // Update is called once per frame
+    private void OnDisable()
+    {
+        ClearFlock();
+    }
+
     void Update()
     {
-        
+        List<Bird> toRemove = new List<Bird>();
+
+        bool stillAlive = false;
+        foreach(Bird bird in m_birds)
+        {
+            if(bird !=null)
+            {
+                if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, bird.transform.position, m_boundOffset))
+                {
+                    Destroy(bird.gameObject);
+                } else
+                {
+                    stillAlive = true;
+                }
+            }
+        }
+
+        if (!stillAlive)
+        {
+            gameObject.SetActive(false);
+        }
     }
+
 
     void CreateFlock()
     {
-        if(m_birds.Count != 0)
+        ClearFlock();
+
+        m_flockSize = Random.Range(m_flockSizeRange.x, m_flockSizeRange.y);
+        m_direction = (Random.Range(0.0f, 1.0f) < 0.5f) ? Direction.LEFT : Direction.RIGHT;
+
+        m_baseHorizontalVelocity = Random.Range(m_baseHorizontalVelocityRange.x, m_baseHorizontalVelocityRange.y);
+        if (m_direction == Direction.LEFT) m_baseHorizontalVelocity = -m_baseHorizontalVelocity;
+
+        Vector3 randomBasePosition = RandomStartPosition();
+
+        for (int i = 0; i < m_flockSize; ++i)
         {
-            foreach(Bird bird in m_birds){
-                Destroy(bird.gameObject);
-            }
-            m_birds.Clear();   
+            CreateBird(randomBasePosition);
         }
-
-        //int randomNumber;
-        //Vector3 randomBasePosition = _basePosition;
-        //Vector3 randomVelocity;
-        //Direction randomDirection;
-
-        //for (int i = 0; i < randomNumber; ++i)
-        //{
-            
-
-            
-        //}
     }
 
-    void CreateBird(Direction _direction, Vector3 _basePosition)
+    Vector3 RandomStartPosition()
     {
-        //GameObject go = Instantiate(m_prefabBird, randomPosition, Quaternion.identity);
-        //if (go == null)
-        //{
-        //    Debug.LogError("Error while instantiating a bird");
-        //    return;
-        //}
+        Vector3 startPosition;
 
-        //Bird bird = go.GetComponent<Bird>();
-        //if (bird == null)
-        //{
-        //    Debug.LogError("Error while instantiating a bird");
-        //    return;
-        //}
+        float deltaX = m_camera.cameraWidth / 2 + m_boundOffset.x;
+        if (m_direction == Direction.RIGHT) deltaX = -deltaX;
+        startPosition.x = m_camera.transform.position.x + deltaX;
 
-        //bird.m_flock = this;
-        //m_birds.Add(bird);
+        startPosition.y = Random.Range(m_camera.cameraBoundaries.m_minPosition.y - m_boundOffset.y, m_camera.cameraBoundaries.m_maxPosition.y + m_boundOffset.y);
+        startPosition.z = Random.Range(m_camera.transform.position.z + m_depthPositionRange.x, m_camera.transform.position.z + m_depthPositionRange.y); ;
+
+        return startPosition;
+    }
+
+    void ClearFlock()
+    {
+        if (m_birds.Count != 0)
+        {
+            foreach (Bird bird in m_birds)
+            {
+                if(bird != null)
+                    Destroy(bird.gameObject);
+            }
+            m_birds.Clear();
+        }
+    }
+
+    void CreateBird(in Vector3 _basePosition)
+    {
+        Vector3 smallRandomOffset = Random.insideUnitSphere * Mathf.Min(Mathf.Abs(m_boundOffset.x), Mathf.Abs(m_boundOffset.y));
+
+        GameObject go = Instantiate(m_prefabBird, _basePosition + smallRandomOffset, Quaternion.identity);
+
+        Bird bird = go.GetComponent<Bird>();
+        if (bird == null)
+        {
+            Debug.LogError("Error while instantiating a bird");
+            return;
+        }
+
+        bird.m_flock = this;
+        m_birds.Add(bird);
     }
 }

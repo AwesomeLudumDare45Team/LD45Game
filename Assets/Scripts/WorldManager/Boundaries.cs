@@ -39,18 +39,18 @@ public class Boundaries
     }
     public bool IsInBoundaries(Direction _direction, in Vector2 _position, Vector2 _offset)
     {
-        return DistanceToBoundary(_direction, _position, _offset) > 0;
+        return DistanceToBoundary(_direction, _position, _offset) >= 0;
     }
 
     // positive value -> is inside / negative -> is outside
-    // offset positif -> inside / offset negatif -> outside
+    // offset positif -> outside / offset negatif -> inside
     public float DistanceToBoundary(Direction _direction, in Vector2 _position, float _offset = 0)
     {
         return DistanceToBoundary(_direction, _position, new Vector2(_offset, _offset));
     }
 
     // positive value -> is inside / negative -> is outside
-    // offset positif -> inside / offset negatif -> outside
+    // offset positif -> outside / offset negatif -> inside
     public float DistanceToBoundary(Direction _direction, in Vector2 _position, in Vector2 _offset)
     {
         float result = 0;
@@ -58,16 +58,16 @@ public class Boundaries
         switch (_direction)
         {
             case Direction.UP:
-                result = m_maxPosition.y - _offset.y - _position.y;
+                result = m_maxPosition.y + _offset.y - _position.y;
                 break;
             case Direction.DOWN:
-                result = - m_minPosition.y - _offset.y + _position.y;
+                result = _position.y - m_minPosition.y + _offset.y;
                 break;
             case Direction.RIGHT:
-                result = m_maxPosition.x - _offset.x - _position.x;
+                result = m_maxPosition.x + _offset.x - _position.x;
                 break;
             case Direction.LEFT:
-                result = -m_minPosition.x - _offset.x + _position.x;
+                result = _position.x - m_minPosition.x + _offset.x;
                 break;
             default:
                 break;
@@ -76,13 +76,13 @@ public class Boundaries
         return result;
     }
 
-    // offset positif -> inside / offset negatif -> outside
+    // offset positif -> outside / offset negatif -> inside
     public Vector3 SnapPosition(Direction _direction, in Vector3 _position, float _offset = 0)
     {
         return SnapPosition(_direction, _position, new Vector2(_offset, _offset));
     }
 
-    // offset positif -> inside / offset negatif -> outside
+    // offset positif -> outside / offset negatif -> inside
     public Vector3 SnapPosition(Direction _direction, in Vector3 _position, in Vector2 _offset)
     {
         Vector3 snapPosition = _position;
@@ -92,14 +92,14 @@ public class Boundaries
         if(_direction == Direction.UP || _direction == Direction.DOWN)
         {
             delta.x = 0;
-            if (_direction == Direction.UP)
+            if (_direction == Direction.DOWN)
                 delta.y = -delta.y;
         }
 
         if (_direction == Direction.RIGHT || _direction == Direction.LEFT)
         {
             delta.y = 0;
-            if (_direction == Direction.RIGHT)
+            if (_direction == Direction.LEFT)
                 delta.x = -delta.x;
         }
 
@@ -134,17 +134,17 @@ public class Boundaries
     {
         Vector3 snapPosition = _position;
 
-        if (!IsInBoundaries(Direction.DOWN, snapPosition))
-            snapPosition = SnapPosition(Direction.UP, snapPosition, _offset);
+        if (!IsInBoundaries(Direction.DOWN, snapPosition, _offset))
+            snapPosition = SnapPosition(Direction.UP, snapPosition);
 
-        if (!IsInBoundaries(Direction.UP, snapPosition))
-            snapPosition = SnapPosition(Direction.DOWN, snapPosition, _offset);
+        if (!IsInBoundaries(Direction.UP, snapPosition, _offset))
+            snapPosition = SnapPosition(Direction.DOWN, snapPosition);
 
-        if (!IsInBoundaries(Direction.LEFT, snapPosition))
-            snapPosition = SnapPosition(Direction.RIGHT, snapPosition, _offset);
+        if (!IsInBoundaries(Direction.LEFT, snapPosition, _offset))
+            snapPosition = SnapPosition(Direction.RIGHT, snapPosition);
 
-        if (!IsInBoundaries(Direction.RIGHT, snapPosition))
-            snapPosition = SnapPosition(Direction.LEFT, snapPosition, _offset);
+        if (!IsInBoundaries(Direction.RIGHT, snapPosition, _offset))
+            snapPosition = SnapPosition(Direction.LEFT, snapPosition);
 
         return snapPosition;
     }

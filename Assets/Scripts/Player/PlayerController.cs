@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 	public float smallJumpCoefficient;
 	public float airControlCoefficient;
 
-	private float teleportOffset = 0.1f;
+	private float teleportOffset = 0.5f;
 
 	void Awake()
 	{
