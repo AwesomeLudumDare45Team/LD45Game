@@ -13,7 +13,7 @@ public class Plane : MonoBehaviour
     private Direction m_direction;
     private float m_horizontalVelocity;
 
-    public TrailRenderer m_trailRenderer;
+    public LineRenderer m_lineRenderer;
     public float m_trailStartDistance;
     public Vector2 m_trailSizeRange;
     public int m_trailNumberPoints;
@@ -32,7 +32,6 @@ public class Plane : MonoBehaviour
     {
         m_camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraBehaviour>();
         m_direction = (Random.Range(0.0f, 1.0f) < 0.5f) ? Direction.LEFT : Direction.RIGHT;
-        m_trailRenderer.Clear();
 
         m_horizontalVelocity = Random.Range(m_horizontalVelocityRange.x, m_horizontalVelocityRange.y);
         
@@ -40,6 +39,7 @@ public class Plane : MonoBehaviour
         m_rb.velocity = Vector3.zero;
         m_trailSize = m_trailSizeRange.x + (m_trailSizeRange.y - m_trailSizeRange.x) * (m_horizontalVelocity - m_horizontalVelocityRange.x) / (m_horizontalVelocityRange.y - m_horizontalVelocityRange.x) ;
 
+        m_lineRenderer.positionCount= m_trailNumberPoints;
         if (m_direction == Direction.LEFT) m_horizontalVelocity = -m_horizontalVelocity;
         if (m_direction == Direction.LEFT) m_model.transform.Rotate(Vector3.up, 180);
     }
@@ -61,24 +61,24 @@ public class Plane : MonoBehaviour
     void Update()
     {
         Vector3 speed = m_horizontalVelocity * Vector3.right;
-        transform.position += speed * Time.deltaTime;
+        m_rb.transform.position += speed * Time.deltaTime;
 
         UpdateTrail();
 
-        if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, transform.position, (m_trailSize + m_trailStartDistance) * 1.1f))
+        if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, m_rb.transform.position, (m_trailSize + m_trailStartDistance) * 1.1f))
             gameObject.SetActive(false);  
     }
 
     private void UpdateTrail()
     {
-        m_trailRenderer.Clear();
         float factor = m_trailSize  / (m_trailNumberPoints - 1.0f);
         factor *= (1 + m_proportionFlicker * (Mathf.Abs(Mathf.Sin((Time.time * m_flickerSpeedFactor))) - 1));
-        for (int i =0; i< m_trailNumberPoints; ++i)
+        for (int i =0; i< m_lineRenderer.positionCount; ++i)
         {
-            float deltaX = m_trailStartDistance + factor * (m_trailNumberPoints - 1.0f - i );
+            //float deltaX = m_trailStartDistance + factor * (m_trailNumberPoints - 1.0f - i);
+            float deltaX = m_trailStartDistance + factor * i;
             if (m_direction == Direction.RIGHT) deltaX = -deltaX;
-            m_trailRenderer.AddPosition(transform.position + deltaX*Vector3.right);
+            m_lineRenderer.SetPosition(i, m_rb.transform.position + deltaX*Vector3.right);
         }
     }
 }
