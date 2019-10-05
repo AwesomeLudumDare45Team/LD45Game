@@ -8,10 +8,6 @@ public class GameManager : MonoBehaviour
 
     public Boundaries worldBoundaries;
 
-
-	public Vector2 minBorder;
-	public Vector2 maxBorder;
-
 	public bool drawBorder;
 
 	private void OnDrawGizmos()
