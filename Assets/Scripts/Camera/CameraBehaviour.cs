@@ -47,9 +47,9 @@ public class CameraBehaviour : MonoBehaviour
         Vector2 cameraSizeOffset = new Vector2(cameraWidth / 2, cameraHeight / 2);
 
         left.enabled = worldBoundaries.DistanceToBoundary(Direction.LEFT, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
-        right.enabled = worldBoundaries.DistanceToBoundary(Direction.RIGHT, smoothedPosition, -cameraSizeOffset) < epsilonDisplay;
+        right.enabled = worldBoundaries.DistanceToBoundary(Direction.RIGHT, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
         bottom.enabled = worldBoundaries.DistanceToBoundary(Direction.DOWN, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
-        top.enabled = worldBoundaries.DistanceToBoundary(Direction.UP, smoothedPosition, -cameraSizeOffset) < epsilonDisplay;
+        top.enabled = worldBoundaries.DistanceToBoundary(Direction.UP, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
         smoothedPosition = worldBoundaries.BoundPositionAll(smoothedPosition, cameraSizeOffset);
 
         // TODO integrate cameraPosition Offset :shrug:
