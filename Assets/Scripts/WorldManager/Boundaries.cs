@@ -20,12 +20,12 @@ public class Boundaries
         m_maxPosition = _maxPosition;
     }
 
-    public bool IsInBoundariesAll(Vector2 _position, float _offset = 0)
+    public bool IsInBoundariesAll(in Vector2 _position, float _offset = 0)
     {
         return IsInBoundariesAll(_position, new Vector2(_offset, _offset));
     }
 
-    public bool IsInBoundariesAll(Vector2 _position, Vector2 _offset)
+    public bool IsInBoundariesAll(in Vector2 _position, in Vector2 _offset)
     {
         return IsInBoundaries(Direction.UP, _position, _offset) 
             && IsInBoundaries(Direction.DOWN, _position, _offset)
@@ -33,23 +33,23 @@ public class Boundaries
             && IsInBoundaries(Direction.LEFT, _position, _offset);
     }
 
-    public bool IsInBoundaries(Direction _direction, Vector2 _position, float _offset = 0)
+    public bool IsInBoundaries(Direction _direction, in Vector2 _position, float _offset = 0)
     {
         return IsInBoundaries(_direction, _position, new Vector2(_offset, _offset));
     }
-    public bool IsInBoundaries(Direction _direction, Vector2 _position, Vector2 _offset)
+    public bool IsInBoundaries(Direction _direction, in Vector2 _position, Vector2 _offset)
     {
         return DistanceToBoundary(_direction, _position, _offset) > 0;
     }
 
     // positive value -> is inside / negative -> is outside
-    public float DistanceToBoundary(Direction _direction, Vector2 _position, float _offset = 0)
+    public float DistanceToBoundary(Direction _direction, in Vector2 _position, float _offset = 0)
     {
         return DistanceToBoundary(_direction, _position, new Vector2(_offset, _offset));
     }
 
     // positive value -> is inside / negative -> is outside
-    public float DistanceToBoundary(Direction _direction, Vector2 _position, Vector2 _offset)
+    public float DistanceToBoundary(Direction _direction, in Vector2 _position, in Vector2 _offset)
     {
         float result = 0;
 
@@ -75,44 +75,45 @@ public class Boundaries
     }
 
     // _offset always positive in this case
-    public Vector3 SnapPosition(Direction _direction, bool _inside, Vector3 _position, float _offset = 0)
+    public Vector3 SnapPosition(Direction _direction, bool _inside, in Vector3 _position, float _offset = 0)
     {
         return SnapPosition(_direction, _inside, _position, new Vector2(_offset, _offset));
     }
 
-    public Vector3 SnapPosition(Direction _direction, bool _inside, Vector3 _position, Vector2 _offset)
+    public Vector3 SnapPosition(Direction _direction, bool _inside, in Vector3 _position, in Vector2 _offset)
     {
         Vector3 snapPosition = _position;
+        Vector2 delta = _offset;
 
         // Manage offset
         if(_direction == Direction.UP || _direction == Direction.DOWN)
         {
-            _offset.x = 0;
+            delta.x = 0;
             if (_direction == Direction.UP && _inside || _direction == Direction.DOWN && !_inside)
-                _offset.y = -_offset.y;
+                delta.y = -delta.y;
         }
 
         if (_direction == Direction.RIGHT || _direction == Direction.LEFT)
         {
-            _offset.y = 0;
+            delta.y = 0;
             if (_direction == Direction.RIGHT && _inside || _direction == Direction.LEFT && !_inside)
-                _offset.x = -_offset.x;
+                delta.x = -delta.x;
         }
 
         // Add offset to value
         switch (_direction)
         {
             case Direction.UP:
-                snapPosition.y = m_maxPosition.y + _offset.y;
+                snapPosition.y = m_maxPosition.y + delta.y;
                 break;
             case Direction.DOWN:
-                snapPosition.y = m_minPosition.y + _offset.y;
+                snapPosition.y = m_minPosition.y + delta.y;
                 break;
             case Direction.RIGHT:
-                snapPosition.x = m_maxPosition.x + _offset.x;
+                snapPosition.x = m_maxPosition.x + delta.x;
                 break;
             case Direction.LEFT:
-                snapPosition.x = m_minPosition.x + _offset.x;
+                snapPosition.x = m_minPosition.x + delta.x;
                 break;
             default:
                 break;
@@ -121,12 +122,12 @@ public class Boundaries
         return snapPosition;
     }
 
-    public Vector3 WrapPositionAll(Vector3 _position, float _offset = 0)
+    public Vector3 WrapPositionAll(in Vector3 _position, float _offset = 0)
     {
         return WrapPositionAll(_position, new Vector2(_offset, _offset));
     }
 
-    public Vector3 WrapPositionAll(Vector3 _position, Vector2 _offset)
+    public Vector3 WrapPositionAll(in Vector3 _position, in Vector2 _offset)
     {
         Vector3 snapPosition = _position;
 
@@ -145,12 +146,12 @@ public class Boundaries
         return snapPosition;
     }
 
-    public Vector3 BoundPositionAll(Vector3 _position, float _offset = 0)
+    public Vector3 BoundPositionAll(in Vector3 _position, float _offset = 0)
     {
         return BoundPositionAll(_position, new Vector2(_offset, _offset));
     }
 
-    public Vector3 BoundPositionAll(Vector3 _position, Vector2 _offset)
+    public Vector3 BoundPositionAll(in Vector3 _position, in Vector2 _offset)
     {
         Vector3 snapPosition = _position;
 
