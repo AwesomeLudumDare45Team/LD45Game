@@ -29,7 +29,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3049624092035123686}
+  - {fileID: 4016838032145440326}
+  - {fileID: 2840228598158592538}
+  - {fileID: 9152477342394424783}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -61,10 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c564cd74b5e018f4389786ae8a5280a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_wallUp: {fileID: 0}
-  m_wallDown: {fileID: 0}
-  m_wallRight: {fileID: 0}
-  m_wallLeft: {fileID: 0}
 --- !u!114 &1327258183948048732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,5 +80,193 @@ MonoBehaviour:
   m_birdFlockPrefab: {fileID: 0}
   m_birds: 0
   m_butterflies: 0
-  m_birdsRandomSpawnTime: {x: 2, y: 10}
-  m_butterfliesRandomSpawnTime: {x: 10, y: 15}
+  m_airplanes: 0
+  m_flowers: 0
+--- !u!1 &1267925413805846732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3049624092035123686}
+  - component: {fileID: 5221837197046534561}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3049624092035123686
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267925413805846732}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 540767178525356009}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5221837197046534561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267925413805846732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de8461e53264cc4caa1b16ea497ad81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lifePrefab: {fileID: 878895869723156380, guid: 4ac84551fdb1b51499cb0fcbbf198fe6,
+    type: 3}
+  m_poolSize: 3
+  m_timeToRespawn: {x: 2, y: 4}
+--- !u!1 &2880404772731021965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9152477342394424783}
+  - component: {fileID: 1257889344927935444}
+  m_Layer: 0
+  m_Name: FlowerFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9152477342394424783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2880404772731021965}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 540767178525356009}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1257889344927935444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2880404772731021965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de8461e53264cc4caa1b16ea497ad81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lifePrefab: {fileID: 878895869723156380, guid: a1b7e42f103effe4abfd559b5f1c0ec2,
+    type: 3}
+  m_poolSize: 10
+  m_timeToRespawn: {x: 0.1, y: 1}
+--- !u!1 &3763165625686636546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4016838032145440326}
+  - component: {fileID: 8063512853525901890}
+  m_Layer: 0
+  m_Name: PlaneFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4016838032145440326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3763165625686636546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 540767178525356009}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8063512853525901890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3763165625686636546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de8461e53264cc4caa1b16ea497ad81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lifePrefab: {fileID: 878895869723156380, guid: cdfc1fbf7a86cae4492f413c203840f1,
+    type: 3}
+  m_poolSize: 3
+  m_timeToRespawn: {x: 5, y: 20}
+--- !u!1 &7791892540451453084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2840228598158592538}
+  - component: {fileID: 6106439557928513194}
+  m_Layer: 0
+  m_Name: ButterflyFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2840228598158592538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7791892540451453084}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 540767178525356009}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6106439557928513194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7791892540451453084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de8461e53264cc4caa1b16ea497ad81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lifePrefab: {fileID: 878895869723156380, guid: c4efa48326ee99944aab158e000a45ad,
+    type: 3}
+  m_poolSize: 3
+  m_timeToRespawn: {x: 1, y: 3}

@@ -17,7 +17,7 @@ public class LifeFactory : MonoBehaviour
     {
         m_productionEnabled = false;
         m_lifePrefab.SetActive( false );
-        m_productionTimer = Random.Range(m_timeToRespawn.x, m_timeToRespawn.y);
+        m_productionTimer = -1;
         FillPool();
     }
     void Stop()

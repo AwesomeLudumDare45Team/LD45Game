@@ -14,10 +14,7 @@ public class EnvironmentLifeManager : MonoBehaviour
     public bool m_birds;
     public bool m_butterflies;
     public bool m_airplanes;
-
-
-    public Vector2 m_birdsRandomSpawnTime;
-    public Vector2 m_butterfliesRandomSpawnTime;
+    public bool m_flowers;
 
     private void Awake()
     {

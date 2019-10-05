@@ -14,8 +14,7 @@ public class BirdFlock : MonoBehaviour
     [HideInInspector]
     public List<Bird> m_birds = new List<Bird>();
 
-    [HideInInspector]
-    public CameraBehaviour m_camera;
+    private CameraBehaviour m_camera;
 
     [HideInInspector]
     public Direction m_direction;
@@ -79,7 +78,7 @@ public class BirdFlock : MonoBehaviour
         }
     }
 
-    Vector3 RandomStartPosition()
+    private Vector3 RandomStartPosition()
     {
         Vector3 startPosition;
 
