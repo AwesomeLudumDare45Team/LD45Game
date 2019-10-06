@@ -50,6 +50,7 @@ MonoBehaviour:
     m_minPosition: {x: -15, y: -5.625}
     m_maxPosition: {x: 15, y: 5.625}
   drawBorder: 1
+  seeker: {fileID: 0}
 --- !u!114 &540767178525356010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,11 +63,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c564cd74b5e018f4389786ae8a5280a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_elementTag:
-  - Grass
-  - Weed
-  - 
-  m_elementActivation: 
 --- !u!1 &1267925413805846732
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_lifePrefab: {fileID: 878895869723156380, guid: c4efa48326ee99944aab158e000a45ad,
     type: 3}
-  m_poolSize: 3
+  m_poolSize: 2
   m_timeToRespawn: {x: 1, y: 3}
 --- !u!114 &5768096399316332633
 MonoBehaviour:

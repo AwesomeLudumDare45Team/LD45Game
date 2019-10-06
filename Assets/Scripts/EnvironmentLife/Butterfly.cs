@@ -6,46 +6,59 @@ public class Butterfly : MonoBehaviour
 {
     public GameObject m_model;
     public Vector2 m_sizeFactorVariationRange;
-    public Vector2 m_fallDistanceRange;
     public Vector2 m_impulseFactorRange;
+    public Vector2 m_impulseTimerRange;
+    public float m_gravityFactor;
 
     [HideInInspector]
-    public BirdFlock m_flock;
+    public ButterflyFlock m_flock;
 
     private Rigidbody m_rb;
-    private float m_fallDistance;
-    private Vector3 m_basePosition;
-    private bool m_impulse;
+    private float m_impulseTimer;
+
+    private bool m_flip;
 
     private void Start()
     {
         m_rb = GetComponent<Rigidbody>();
-
-        if (m_flock.m_direction == Direction.LEFT) m_model.transform.Rotate(Vector3.up, 180);
         m_model.transform.localScale *= Random.Range(m_sizeFactorVariationRange.x, m_sizeFactorVariationRange.y);
-
-        m_basePosition = m_rb.transform.position;
-        m_fallDistance = Random.Range(m_fallDistanceRange.x, m_fallDistanceRange.y);
-        m_impulse = false;
+        m_impulseTimer = Random.Range(m_impulseTimerRange.x, m_impulseTimerRange.y);
+        m_flip = false;
     }
 
     void Update()
     {
-        m_rb.AddForce(m_flock.m_baseHorizontalVelocity * Vector3.right, ForceMode.Force);
+        m_impulseTimer -= Time.deltaTime;
 
-        if (m_impulse)
-        {
-            if (m_rb.velocity.y < 0 || m_rb.transform.position.y > (m_basePosition.y - m_fallDistance))
-                m_impulse = false;
-        }
-        else if ( m_rb.transform.position.y < (m_basePosition.y-m_fallDistance))
-        {
-            m_impulse = true;
+        Vector3 toCenter = m_flock.m_flockCenter - m_rb.position;
+        toCenter.z = 0;
+
+        if(m_impulseTimer < 0 || toCenter.magnitude > m_flock.m_flockRadius) {
             float impulseFactor = Random.Range(m_impulseFactorRange.x, m_impulseFactorRange.y);
-            m_rb.AddForce(impulseFactor * Vector3.up, ForceMode.Impulse);
-            m_fallDistance = Random.Range(m_fallDistanceRange.x, m_fallDistanceRange.y);
+            Vector3 impulse = Random.onUnitSphere;
+            impulse.z = 0;
+
+            if(toCenter.y<0)
+                impulse.y = Mathf.Abs(impulse.y);
+
+            
+            impulse *= impulseFactor;
+
+            if (toCenter.magnitude > m_flock.m_flockRadius && Vector3.Dot(impulse.normalized, toCenter.normalized) < 0.5)
+                impulse = impulseFactor * toCenter.normalized;
+
+            if (impulse.y <0)
+                impulse.y /= 2;
+
+            m_rb.AddForce( impulse, ForceMode.Impulse );
+
+            m_impulseTimer = Random.Range(m_impulseTimerRange.x, m_impulseTimerRange.y);
+
+            if (m_flip != (m_rb.velocity.x > 0))
+                m_rb.transform.Rotate(Vector3.up, 180);
+
         }
 
-
+        m_rb.AddForce(m_gravityFactor*Vector3.down, ForceMode.Acceleration);
     }
 }
