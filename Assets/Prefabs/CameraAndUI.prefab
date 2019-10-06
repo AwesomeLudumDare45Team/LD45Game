@@ -592,7 +592,7 @@ MonoBehaviour:
   cameraWidth: 20
   target: {fileID: 0}
   smoothSpeed: 0.125
-  cameraPositionOffset: {x: 0, y: 0, z: -10}
+  cameraPositionOffset: {x: 0, y: 2, z: -10}
   left: {fileID: 8176950234105621732}
   right: {fileID: 8176950235221512399}
   bottom: {fileID: 8176950235494681868}
