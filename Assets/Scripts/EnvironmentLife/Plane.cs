@@ -75,7 +75,6 @@ public class Plane : MonoBehaviour
         factor *= (1 + m_proportionFlicker * (Mathf.Abs(Mathf.Sin((Time.time * m_flickerSpeedFactor))) - 1));
         for (int i =0; i< m_lineRenderer.positionCount; ++i)
         {
-            //float deltaX = m_trailStartDistance + factor * (m_trailNumberPoints - 1.0f - i);
             float deltaX = m_trailStartDistance + factor * i;
             if (m_direction == Direction.RIGHT) deltaX = -deltaX;
             m_lineRenderer.SetPosition(i, m_rb.transform.position + deltaX*Vector3.right);
