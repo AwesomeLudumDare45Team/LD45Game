@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c531e5e5360b24e97ee5d074e21839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_recursiveManagementOfEnvironmentElement: 0
 --- !u!1001 &3044736959867692281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -182,6 +183,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f90f91452d10e3e44b01290a4067139d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Grass
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f90f91452d10e3e44b01290a4067139d,
         type: 3}

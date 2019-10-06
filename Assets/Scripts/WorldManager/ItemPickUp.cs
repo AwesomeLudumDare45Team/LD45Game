@@ -37,7 +37,7 @@ public class ItemPickUp : MonoBehaviour
             }
         }
 
-        if (!m_revertEffect || !m_debugDisableRemove)
+        if (!m_revertEffect && !m_debugDisableRemove)
         {
             if (m_deactivateNotDestroy)
                 gameObject.SetActive(false);

@@ -6,6 +6,11 @@ public class WorldManager : MonoBehaviour
 {
     public static WorldManager m_instance { get; private set; }
 
+    public enum EnvironmentElement { GRASS, WEED, TREE, MAX}
+    [HideInInspector]
+    public Dictionary<EnvironmentElement, string> m_elementTag = new Dictionary<EnvironmentElement, string>();
+    [HideInInspector]
+    public Dictionary<EnvironmentElement, bool> m_elementActivation = new Dictionary<EnvironmentElement, bool>();
 
     private void Awake()
     {
@@ -16,5 +21,15 @@ public class WorldManager : MonoBehaviour
         }
 
         m_instance = this;
+
+        m_elementTag.Clear();
+        m_elementTag.Add(EnvironmentElement.GRASS, "Grass");
+        m_elementTag.Add(EnvironmentElement.WEED, "Weed");
+        m_elementTag.Add(EnvironmentElement.TREE, "Tree");
+
+        m_elementActivation.Clear();
+        m_elementActivation.Add(EnvironmentElement.GRASS, false);
+        m_elementActivation.Add(EnvironmentElement.WEED, false);
+        m_elementActivation.Add(EnvironmentElement.TREE, false);
     }
 }
