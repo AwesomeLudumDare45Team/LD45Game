@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
 	public bool drawBorder;
 
+	public TargetSeeker seeker;
+
 	private void OnDrawGizmos()
 	{
 		if(drawBorder)
@@ -30,9 +32,4 @@ public class GameManager : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 	}
-
-    private void Update()
-    {
-        
-    }
 }
