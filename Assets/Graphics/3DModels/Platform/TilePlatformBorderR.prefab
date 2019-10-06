@@ -3,8 +3,7 @@
 --- !u!1 &1593468047842471895
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 5186102076070327063, guid: 608ceb3a3a3dcea4698eff3e12abe202,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
@@ -20,12 +19,11 @@ GameObject:
 --- !u!4 &5644058602964179951
 Transform:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 5943608905010264429, guid: 608ceb3a3a3dcea4698eff3e12abe202,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593468047842471895}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -33,7 +31,7 @@ Transform:
   - {fileID: 7241891072654018143}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &2448525813717675333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,11 +114,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5644058602964179951}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: c6d203c6010c2bb4db027bb139c9aa7e,
-        type: 3}
-      propertyPath: m_Name
-      value: TilePlatformBorderRGrass
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c6d203c6010c2bb4db027bb139c9aa7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -175,6 +168,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c6d203c6010c2bb4db027bb139c9aa7e,
+        type: 3}
+      propertyPath: m_Name
+      value: TilePlatformBorderRGrass
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6d203c6010c2bb4db027bb139c9aa7e, type: 3}
