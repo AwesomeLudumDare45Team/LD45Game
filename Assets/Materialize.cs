@@ -17,7 +17,7 @@ public class Materialize : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (value > 0 && active)
+        if (value > -0.2 && active)
 		{
 			value -= Time.deltaTime * speed;
 		}
