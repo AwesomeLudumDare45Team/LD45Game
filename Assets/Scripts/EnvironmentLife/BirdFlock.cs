@@ -25,7 +25,7 @@ public class BirdFlock : MonoBehaviour
 
     private void OnEnable()
     {
-        m_camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraBehaviour>();
+        m_camera = GameObject.FindGameObjectWithTag("CameraBase").GetComponent<CameraBehaviour>();
         CreateFlock();
     }
 

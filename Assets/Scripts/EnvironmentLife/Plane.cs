@@ -30,7 +30,7 @@ public class Plane : MonoBehaviour
 
     private void OnEnable()
     {
-        m_camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraBehaviour>();
+        m_camera = GameObject.FindGameObjectWithTag("CameraBase").GetComponent<CameraBehaviour>();
         m_direction = (Random.Range(0.0f, 1.0f) < 0.5f) ? Direction.LEFT : Direction.RIGHT;
 
         m_horizontalVelocity = Random.Range(m_horizontalVelocityRange.x, m_horizontalVelocityRange.y);
@@ -65,8 +65,8 @@ public class Plane : MonoBehaviour
 
         UpdateTrail();
 
-        if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, m_rb.transform.position, (m_trailSize + m_trailStartDistance) * 1.1f))
-            gameObject.SetActive(false);  
+        if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, m_rb.transform.position, (m_trailSize + m_trailStartDistance) * 2.0f))
+            transform.parent.gameObject.SetActive(false);
     }
 
     private void UpdateTrail()
