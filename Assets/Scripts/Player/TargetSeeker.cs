@@ -16,13 +16,6 @@ public class TargetSeeker : MonoBehaviour
 
 	void Update()
     {
-		float angle = Vector3.Angle(Vector3.up, target.position - transform.position);
-
-		transform.eulerAngles = new Vector3(0.0f, 0.0f, angle);
+		transform.LookAt(target);
     }
-
-	bool IsLeft(Vector3 A, Vector3 B)
-	{
-		return -A.x * B.y + A.y * B.x < 0.0f;
-	}
 }
