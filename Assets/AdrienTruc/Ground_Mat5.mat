@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass_Mat4
+  m_Name: Ground_Mat5
   m_Shader: {fileID: -6465566751694194690, guid: 1331ec68c5ccc99459e31be6e63f0eaf,
     type: 3}
   m_ShaderKeywords: 
@@ -88,7 +88,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_A10909E1: {r: 0, g: 0.5882353, b: 0.14216971, a: 0}
+    - Color_A10909E1: {r: 0.5882353, g: 0.57936877, b: 0, a: 0}
     - Color_CAB9B427: {r: 0, g: 0.4355469, b: 1, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
