@@ -63,11 +63,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c564cd74b5e018f4389786ae8a5280a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_elementTag:
-  - Grass
-  - Weed
-  - 
-  m_elementActivation: 
 --- !u!1 &1267925413805846732
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9152477342394424783}
-  - component: {fileID: 1257889344927935444}
+  - component: {fileID: 379872533307994725}
   - component: {fileID: 8434455510685263749}
   m_Layer: 0
   m_Name: FlowerFactory
@@ -161,7 +156,7 @@ Transform:
   m_Father: {fileID: 8919076885454319323}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1257889344927935444
+--- !u!114 &379872533307994725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,13 +165,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2880404772731021965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5de8461e53264cc4caa1b16ea497ad81, type: 3}
+  m_Script: {fileID: 11500000, guid: 9fa543d72ed84604e996ccb4505a758b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_lifePrefab: {fileID: 878895869723156380, guid: a1b7e42f103effe4abfd559b5f1c0ec2,
     type: 3}
   m_poolSize: 10
-  m_timeToRespawn: {x: 0.1, y: 1}
+  m_timeToRespawn: {x: 0.1, y: 0.3}
+  m_minPlayerSpeed: 0.001
 --- !u!114 &8434455510685263749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe9242f9da213324998e4f93d6a8cd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lifeFactory: {fileID: 1257889344927935444}
+  m_lifeFactory: {fileID: 379872533307994725}
 --- !u!1 &3218214579070763402
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_lifePrefab: {fileID: 878895869723156380, guid: c4efa48326ee99944aab158e000a45ad,
     type: 3}
-  m_poolSize: 3
+  m_poolSize: 2
   m_timeToRespawn: {x: 1, y: 3}
 --- !u!114 &5768096399316332633
 MonoBehaviour:
