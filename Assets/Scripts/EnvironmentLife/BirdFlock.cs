@@ -107,7 +107,7 @@ public class BirdFlock : MonoBehaviour
 
     void CreateBird(in Vector3 _basePosition)
     {
-        Vector3 smallRandomOffset = Random.insideUnitSphere * Mathf.Min(Mathf.Abs(m_boundOffset.x), Mathf.Abs(m_boundOffset.y));
+        Vector3 smallRandomOffset = Vector3.right * Random.Range(-Mathf.Abs(m_boundOffset.y), Mathf.Abs(m_boundOffset.y));
 
         GameObject go = Instantiate(m_prefabBird, _basePosition + smallRandomOffset, Quaternion.identity);
 

@@ -74,6 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3049624092035123686}
   - component: {fileID: 5221837197046534561}
+  - component: {fileID: 3999100391063538684}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -111,6 +112,19 @@ MonoBehaviour:
     type: 3}
   m_poolSize: 3
   m_timeToRespawn: {x: 2, y: 4}
+--- !u!114 &3999100391063538684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267925413805846732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9242f9da213324998e4f93d6a8cd46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lifeFactory: {fileID: 5221837197046534561}
 --- !u!1 &2880404772731021965
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9152477342394424783}
   - component: {fileID: 1257889344927935444}
+  - component: {fileID: 8434455510685263749}
   m_Layer: 0
   m_Name: FlowerFactory
   m_TagString: Untagged
@@ -158,6 +173,19 @@ MonoBehaviour:
     type: 3}
   m_poolSize: 10
   m_timeToRespawn: {x: 0.1, y: 1}
+--- !u!114 &8434455510685263749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2880404772731021965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9242f9da213324998e4f93d6a8cd46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lifeFactory: {fileID: 1257889344927935444}
 --- !u!1 &3763165625686636546
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4016838032145440326}
   - component: {fileID: 8063512853525901890}
+  - component: {fileID: 2699863267063835271}
   m_Layer: 0
   m_Name: PlaneFactory
   m_TagString: Untagged
@@ -205,6 +234,19 @@ MonoBehaviour:
     type: 3}
   m_poolSize: 3
   m_timeToRespawn: {x: 5, y: 20}
+--- !u!114 &2699863267063835271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3763165625686636546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9242f9da213324998e4f93d6a8cd46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lifeFactory: {fileID: 8063512853525901890}
 --- !u!1 &7791892540451453084
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2840228598158592538}
   - component: {fileID: 6106439557928513194}
+  - component: {fileID: 5768096399316332633}
   m_Layer: 0
   m_Name: ButterflyFactory
   m_TagString: Untagged
@@ -252,3 +295,16 @@ MonoBehaviour:
     type: 3}
   m_poolSize: 3
   m_timeToRespawn: {x: 1, y: 3}
+--- !u!114 &5768096399316332633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7791892540451453084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9242f9da213324998e4f93d6a8cd46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lifeFactory: {fileID: 6106439557928513194}
