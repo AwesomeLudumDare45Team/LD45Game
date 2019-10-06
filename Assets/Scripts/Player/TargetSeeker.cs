@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class TargetSeeker : MonoBehaviour
 {
-
 	public Transform target;
 
-    void Update()
+	[HideInInspector]
+	public GameObject arrow;
+
+	private void Awake()
+	{
+		arrow = transform.GetChild(0).gameObject;
+	}
+
+	void Update()
     {
-		if (target == null)
-			transform.LookAt(transform.position + Vector3.forward);
-		else
-			transform.LookAt(target);
+		float angle = Vector3.Angle(Vector3.up, target.position - transform.position);
+
+		transform.eulerAngles = new Vector3(0.0f, 0.0f, angle);
     }
+
+	bool IsLeft(Vector3 A, Vector3 B)
+	{
+		return -A.x * B.y + A.y * B.x < 0.0f;
+	}
 }
