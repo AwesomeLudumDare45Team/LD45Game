@@ -13,6 +13,9 @@ public class WorldEffectNextTarget : WorldEffect
 
 	public override void Execute()
 	{
-		GameManager.instance.seeker.target = nextTarget;
+		if (nextTarget == null)
+			GameManager.instance.seeker.arrow.SetActive(false);
+		else
+			GameManager.instance.seeker.target = nextTarget;
 	}
 }
