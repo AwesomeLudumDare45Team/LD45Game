@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 540767178525356009}
   - component: {fileID: 7230308837679249455}
   - component: {fileID: 540767178525356010}
-  - component: {fileID: 1327258183948048732}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -65,23 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c564cd74b5e018f4389786ae8a5280a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1327258183948048732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540767178525356011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bc55c296ddfede42a086392f4c5823d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_birdFlockPrefab: {fileID: 0}
-  m_birds: 0
-  m_butterflies: 0
-  m_airplanes: 0
-  m_flowers: 0
 --- !u!1 &1267925413805846732
 GameObject:
   m_ObjectHideFlags: 0
