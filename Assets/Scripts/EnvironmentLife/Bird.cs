@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+    public GameObject m_model;
+    public Vector2 m_sizeFactorVariationRange;
+
     [HideInInspector]
     public BirdFlock m_flock;
 
@@ -12,6 +15,9 @@ public class Bird : MonoBehaviour
     private void Start()
     {
         m_rb = GetComponent<Rigidbody>();
+
+        if (m_flock.m_direction == Direction.LEFT) m_model.transform.Rotate(Vector3.up, 180);
+        m_model.transform.localScale *= Random.Range(m_sizeFactorVariationRange.x, m_sizeFactorVariationRange.y);
     }
 
     // Update is called once per frame
