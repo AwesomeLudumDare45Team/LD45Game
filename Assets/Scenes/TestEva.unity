@@ -788,28 +788,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirdFactory
       objectReference: {fileID: 0}
-    - target: {fileID: 1327258183948048732, guid: b152242f4d7f4ed43ac46441aa9fb709,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: m_birds
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1327258183948048732, guid: b152242f4d7f4ed43ac46441aa9fb709,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: m_randomSpawnTimeBirds.x
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1327258183948048732, guid: b152242f4d7f4ed43ac46441aa9fb709,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: m_randomSpawnTimeBirds.y
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1327258183948048732, guid: b152242f4d7f4ed43ac46441aa9fb709,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: m_birdsRandomSpawnTime.x
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1327258183948048732, guid: b152242f4d7f4ed43ac46441aa9fb709,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: m_birdsRandomSpawnTime.y
       value: 10
       objectReference: {fileID: 0}
