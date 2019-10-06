@@ -8,6 +8,7 @@ public class Plane : MonoBehaviour
     public Vector2 m_boundOffset;
     public Vector2 m_depthPositionRange;
     public Vector2 m_horizontalVelocityRange;
+    public Vector2 m_sizeFactorVariationRange;
 
     private Rigidbody m_rb;
     private Direction m_direction;
@@ -42,6 +43,7 @@ public class Plane : MonoBehaviour
         m_lineRenderer.positionCount= m_trailNumberPoints;
         if (m_direction == Direction.LEFT) m_horizontalVelocity = -m_horizontalVelocity;
         if (m_direction == Direction.LEFT) m_model.transform.Rotate(Vector3.up, 180);
+        m_model.transform.localScale *= Random.Range(m_sizeFactorVariationRange.x, m_sizeFactorVariationRange.y);
     }
 
     private Vector3 RandomStartPosition()
