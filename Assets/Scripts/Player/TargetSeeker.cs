@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class TargetSeeker : MonoBehaviour
 {
-
 	public Transform target;
 
-    void Update()
+	[HideInInspector]
+	public GameObject arrow;
+
+	private void Awake()
+	{
+		arrow = transform.GetChild(0).gameObject;
+	}
+
+	void Update()
     {
-		if (target == null)
-			transform.LookAt(transform.position + Vector3.forward);
-		else
-			transform.LookAt(target);
+		transform.LookAt(target);
     }
 }

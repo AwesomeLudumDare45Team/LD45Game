@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldBoundaries:
-    m_minPosition: {x: -15, y: -5.625}
-    m_maxPosition: {x: 15, y: 5.625}
+    m_minPosition: {x: -10, y: -5.625}
+    m_maxPosition: {x: 10, y: 5.625}
   drawBorder: 1
   seeker: {fileID: 0}
 --- !u!114 &540767178525356010

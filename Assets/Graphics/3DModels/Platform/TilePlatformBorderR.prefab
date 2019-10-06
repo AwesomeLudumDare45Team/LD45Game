@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44aeb11dd6648c8448729a55e3ca484e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
 --- !u!1001 &2448525813717675333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156,21 +156,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5644058602964179951}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: c6d203c6010c2bb4db027bb139c9aa7e,
-        type: 3}
-      propertyPath: m_Name
-      value: TilePlatformBorderRGrass
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c6d203c6010c2bb4db027bb139c9aa7e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c6d203c6010c2bb4db027bb139c9aa7e,
-        type: 3}
-      propertyPath: m_TagString
-      value: Grass
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c6d203c6010c2bb4db027bb139c9aa7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -225,6 +210,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c6d203c6010c2bb4db027bb139c9aa7e,
+        type: 3}
+      propertyPath: m_Name
+      value: TilePlatformBorderRGrass
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c6d203c6010c2bb4db027bb139c9aa7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c6d203c6010c2bb4db027bb139c9aa7e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Grass
       objectReference: {fileID: 0}
     - target: {fileID: -5975033157549033438, guid: c6d203c6010c2bb4db027bb139c9aa7e,
         type: 3}
