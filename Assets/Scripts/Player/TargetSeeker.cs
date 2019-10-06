@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class TargetSeeker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+	public Transform target;
+
     void Update()
     {
-        
+		if (target == null)
+			transform.LookAt(transform.position + Vector3.forward);
+		else
+			transform.LookAt(target);
     }
 }
