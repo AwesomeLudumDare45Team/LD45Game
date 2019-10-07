@@ -56,6 +56,15 @@ public class TimelineDirector : MonoBehaviour
 
 	public void WhenEndTimelineEnded(PlayableDirector obj)
 	{
-		//scene change / quit
-	}
+        StopMusic();
+		Application.Quit();
+    }
+
+
+    private void StopMusic()
+    {
+        var findMusic = firstItem.GetComponent<ItemPickUp>().musicInstance;
+        findMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        findMusic.release();
+    }
 }
