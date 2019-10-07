@@ -13,6 +13,8 @@ public class TimelineDirector : MonoBehaviour
 	public GameObject UIPhazeBorders;
 	public GameObject firstItem;
 
+	public CameraBehaviour camFollow;
+
 	private void Awake()
 	{
 		director = GetComponent<PlayableDirector>();
@@ -28,15 +30,32 @@ public class TimelineDirector : MonoBehaviour
 		firstItem.SetActive(false);
 
 		director.Play();
-		director.stopped += WhenEnded;
+		director.stopped += WhenStartTimelineEnded;
 	}
 
-	public void WhenEnded(PlayableDirector obj)
+	public void WhenStartTimelineEnded(PlayableDirector obj)
 	{
 		GameManager.instance.isPaused = false;
 		GameManager.instance.isInTimeline = false;
 		GameManager.instance.player.SetActive(true);
 		UIPhazeBorders.SetActive(true);
 		firstItem.SetActive(true);
+	}
+
+	public void EndTimeline()
+	{
+		director.playableAsset = endTimeline;
+		GameManager.instance.isPaused = true;
+		GameManager.instance.isInTimeline = true;
+		UIPhazeBorders.SetActive(false);
+		camFollow.enabled = false;
+
+		director.Play();
+		director.stopped += WhenEndTimelineEnded;
+	}
+
+	public void WhenEndTimelineEnded(PlayableDirector obj)
+	{
+		//scene change / quit
 	}
 }

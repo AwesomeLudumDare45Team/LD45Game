@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 4074885344844719540}
   - component: {fileID: 8492054876596762245}
   - component: {fileID: 6837035344887893827}
+  - component: {fileID: 511216784880744814}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -158,6 +159,25 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2700842290145150623}
   m_Enabled: 1
+--- !u!95 &511216784880744814
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700842290145150623}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3093653517057128576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,6 +1210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8176950235196231487}
   - component: {fileID: 8176950235196231473}
+  - component: {fileID: 8388441927059361117}
   m_Layer: 0
   m_Name: CameraAndUI
   m_TagString: CameraBase
@@ -1239,6 +1260,25 @@ MonoBehaviour:
   cameraBoundaries:
     m_minPosition: {x: 0, y: 0}
     m_maxPosition: {x: 0, y: 0}
+--- !u!95 &8388441927059361117
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8176950235196231484}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8176950235221512397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,6 +2095,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4074885344844719540}
     m_Modifications:
+    - target: {fileID: 1287544620992905100, guid: 13fd25392779d4b41b33e99b1ef208ff,
+        type: 3}
+      propertyPath: m_Name
+      value: Audio Listener
+      objectReference: {fileID: 0}
     - target: {fileID: 3735567646807734049, guid: 13fd25392779d4b41b33e99b1ef208ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2109,11 +2154,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1287544620992905100, guid: 13fd25392779d4b41b33e99b1ef208ff,
-        type: 3}
-      propertyPath: m_Name
-      value: Audio Listener
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13fd25392779d4b41b33e99b1ef208ff, type: 3}
