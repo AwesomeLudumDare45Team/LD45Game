@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 	[HideInInspector]
 	public bool isPaused;
 
+	public bool introScene;
 	public TimelineDirector director;
 	[HideInInspector]
 	public bool isInTimeline;
@@ -45,12 +46,9 @@ public class GameManager : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		/*player.SetActive(false);
 
-		player.SetActive(false);
-
-		StartCoroutine(LaunchStartTimeline());
+		StartCoroutine(LaunchStartTimeline());*/
 	}
 
 	IEnumerator LaunchStartTimeline()
