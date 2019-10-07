@@ -17,8 +17,8 @@ public class GoldenGland : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!m_swapped)
-        {
+		if (!m_swapped && WorldManager.m_instance.m_numItemToPickUp <= 0)
+		{
             m_modelGland.SetActive(false);
             m_modelGoldenGland.SetActive(true);
             m_swapped = true;
