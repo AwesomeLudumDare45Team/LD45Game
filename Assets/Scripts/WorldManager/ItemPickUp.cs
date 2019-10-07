@@ -5,11 +5,14 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour
 {
     public List<WorldEffect> m_worldEffectList;
-    public bool m_debugDisableDestroy;
+    public bool m_revertEffect = false;
+    public bool m_debugDisableRemove;
+
+    private bool m_deactivateNotDestroy = true;
     
     void Start()
     {
-        m_debugDisableDestroy = false;
+        m_debugDisableRemove = false;
     }
 
 
@@ -27,13 +30,19 @@ public class ItemPickUp : MonoBehaviour
         {
             if(worldEffect != null)
             {
-                worldEffect.Execute();
+                if (m_revertEffect)
+                    worldEffect.Initialize();
+                else
+                    worldEffect.Execute();
             }
         }
 
-        if (!m_debugDisableDestroy)
+        if (!m_revertEffect && !m_debugDisableRemove)
         {
-            Destroy(gameObject);
+            if (m_deactivateNotDestroy)
+                gameObject.SetActive(false);
+            else
+                Destroy(gameObject);
         }
     }
 }

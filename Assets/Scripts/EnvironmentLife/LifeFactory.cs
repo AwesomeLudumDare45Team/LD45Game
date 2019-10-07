@@ -8,21 +8,26 @@ public class LifeFactory : MonoBehaviour
     public int m_poolSize;
     public Vector2 m_timeToRespawn;
 
-    private bool m_productionEnabled;
-    private List<GameObject> m_poolInstantiated = new List<GameObject>();
-    private List<GameObject> m_poolActivated = new List<GameObject>();
-    private float m_productionTimer;
+    protected bool m_productionEnabled;
+    protected List<GameObject> m_poolInstantiated = new List<GameObject>();
+    protected List<GameObject> m_poolActivated = new List<GameObject>();
+    protected float m_productionTimer;
 
     void Start()
     {
-        m_productionEnabled = false;
-        m_lifePrefab.SetActive( false );
-        m_productionTimer = -1;
-        FillPool();
+        Init();
     }
     void Stop()
     {
         ClearPools();
+    }
+
+    protected virtual void Init()
+    {
+        m_productionEnabled = false;
+        m_lifePrefab.SetActive(false);
+        m_productionTimer = -1;
+        FillPool();
     }
 
     void Update()
@@ -43,15 +48,19 @@ public class LifeFactory : MonoBehaviour
             m_poolInstantiated.Add(go);
         }
 
-        if ( m_productionEnabled && m_poolInstantiated.Count > 0)
+        Produce();
+    }
+
+    protected virtual void Produce()
+    {
+        if (m_productionEnabled && m_poolInstantiated.Count > 0)
         {
             m_productionTimer -= Time.deltaTime;
-
-            if(m_productionTimer < 0) TryActivate();
+            if (m_productionTimer < 0) TryActivate();
         }
     }
 
-    public void TryActivate()
+    public virtual void TryActivate()
     {
         if(m_poolInstantiated.Count > 0)
         {

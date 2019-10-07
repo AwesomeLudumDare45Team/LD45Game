@@ -8,6 +8,7 @@ public class Plane : MonoBehaviour
     public Vector2 m_boundOffset;
     public Vector2 m_depthPositionRange;
     public Vector2 m_horizontalVelocityRange;
+    public Vector2 m_sizeFactorVariationRange;
 
     private Rigidbody m_rb;
     private Direction m_direction;
@@ -22,15 +23,17 @@ public class Plane : MonoBehaviour
     private float m_trailSize;
 
     public GameObject m_model;
+    private bool m_rotated = false;
 
     private void Awake()
     {
         m_rb = GetComponent<Rigidbody>();
+        m_rotated = false;
     }
 
     private void OnEnable()
     {
-        m_camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraBehaviour>();
+        m_camera = GameObject.FindGameObjectWithTag("CameraBase").GetComponent<CameraBehaviour>();
         m_direction = (Random.Range(0.0f, 1.0f) < 0.5f) ? Direction.LEFT : Direction.RIGHT;
 
         m_horizontalVelocity = Random.Range(m_horizontalVelocityRange.x, m_horizontalVelocityRange.y);
@@ -41,7 +44,12 @@ public class Plane : MonoBehaviour
 
         m_lineRenderer.positionCount= m_trailNumberPoints;
         if (m_direction == Direction.LEFT) m_horizontalVelocity = -m_horizontalVelocity;
-        if (m_direction == Direction.LEFT) m_model.transform.Rotate(Vector3.up, 180);
+        if (m_direction == Direction.LEFT && !m_rotated || m_direction == Direction.RIGHT && m_rotated)
+        {
+            m_model.transform.Rotate(Vector3.up, 180);
+            m_rotated = (m_direction == Direction.LEFT);
+        }
+        m_model.transform.localScale *= Random.Range(m_sizeFactorVariationRange.x, m_sizeFactorVariationRange.y);
     }
 
     private Vector3 RandomStartPosition()
@@ -65,8 +73,8 @@ public class Plane : MonoBehaviour
 
         UpdateTrail();
 
-        if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, m_rb.transform.position, (m_trailSize + m_trailStartDistance) * 1.1f))
-            gameObject.SetActive(false);  
+        if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, m_rb.transform.position, (m_trailSize + m_trailStartDistance) * 2.0f))
+            transform.parent.gameObject.SetActive(false);
     }
 
     private void UpdateTrail()
@@ -75,7 +83,6 @@ public class Plane : MonoBehaviour
         factor *= (1 + m_proportionFlicker * (Mathf.Abs(Mathf.Sin((Time.time * m_flickerSpeedFactor))) - 1));
         for (int i =0; i< m_lineRenderer.positionCount; ++i)
         {
-            //float deltaX = m_trailStartDistance + factor * (m_trailNumberPoints - 1.0f - i);
             float deltaX = m_trailStartDistance + factor * i;
             if (m_direction == Direction.RIGHT) deltaX = -deltaX;
             m_lineRenderer.SetPosition(i, m_rb.transform.position + deltaX*Vector3.right);

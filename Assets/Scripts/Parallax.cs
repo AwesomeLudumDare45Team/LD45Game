@@ -35,11 +35,12 @@ public class Parallax : MonoBehaviour
     {
 		for (int i = 0; i < backgrounds.Count; i++)
 		{
-			float parallax = (previousCamPos.x - cam.position.x) * parallaxScales[i];
-			Debug.Log(i);
+			float parallaxX = (previousCamPos.x - cam.position.x) * parallaxScales[i];
+			float parallaxY = (previousCamPos.y - cam.position.y) * parallaxScales[i] * 0.25f;
 
-			float backgroundTargetPosX = backgrounds[i].position.x - parallax;
-			Vector3 backgroundTargetPos = new Vector3(backgroundTargetPosX, backgrounds[i].position.y, backgrounds[i].position.z);
+			float backgroundTargetPosX = backgrounds[i].position.x - parallaxX;
+			float backgroundTargetPosY = backgrounds[i].position.y - parallaxY;
+			Vector3 backgroundTargetPos = new Vector3(backgroundTargetPosX, backgroundTargetPosY, backgrounds[i].position.z);
 
 			backgrounds[i].position = Vector3.Lerp(backgrounds[i].position, backgroundTargetPos, smoothing * Time.deltaTime);
 		}
