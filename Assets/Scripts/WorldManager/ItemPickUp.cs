@@ -15,7 +15,7 @@ public class ItemPickUp : MonoBehaviour
     [SerializeField]
     private bool setMusicParameter, startMusic, playSFX = false;
 
-    private FMOD.Studio.EventInstance musicInstance;
+    public FMOD.Studio.EventInstance musicInstance;
 
     void Start()
     {
@@ -60,6 +60,8 @@ public class ItemPickUp : MonoBehaviour
                     worldEffect.Execute();
             }
         }
+
+        WorldManager.m_instance.m_numItemToPickUp--;
 
         if (!m_revertEffect && !m_debugDisableRemove)
         {

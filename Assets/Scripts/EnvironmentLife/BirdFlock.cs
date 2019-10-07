@@ -15,6 +15,7 @@ public class BirdFlock : MonoBehaviour
     public List<Bird> m_birds = new List<Bird>();
 
     private CameraBehaviour m_camera;
+    private GameObject m_player;
 
     [HideInInspector]
     public Direction m_direction;
@@ -26,6 +27,7 @@ public class BirdFlock : MonoBehaviour
     private void OnEnable()
     {
         m_camera = GameObject.FindGameObjectWithTag("CameraBase").GetComponent<CameraBehaviour>();
+        m_player = GameManager.instance.player;
         CreateFlock();
     }
 
@@ -91,7 +93,13 @@ public class BirdFlock : MonoBehaviour
         startPosition.x = m_camera.transform.position.x + deltaX;
 
         startPosition.y = Random.Range(m_camera.cameraBoundaries.m_minPosition.y - m_boundOffset.y, m_camera.cameraBoundaries.m_maxPosition.y + m_boundOffset.y);
-        startPosition.z = Random.Range(m_camera.transform.position.z + m_depthPositionRange.x, m_camera.transform.position.z + m_depthPositionRange.y); ;
+
+        float deltaZ = Random.Range(m_depthPositionRange.x, m_depthPositionRange.y);
+        if (Random.Range(0f, 1f) < 0.5f)
+        {
+            deltaZ = -deltaZ;
+        }
+        startPosition.z = m_player.transform.position.z + deltaZ ;
 
         return startPosition;
     }

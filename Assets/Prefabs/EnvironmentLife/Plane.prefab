@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_boundOffset: {x: 2, y: -0.5}
-  m_depthPositionRange: {x: 8, y: 10}
+  m_depthPositionRange: {x: 30, y: 40}
   m_horizontalVelocityRange: {x: 0.5, y: 3}
   m_sizeFactorVariationRange: {x: 0.9, y: 1.1}
   m_lineRenderer: {fileID: 214045033271941312}
