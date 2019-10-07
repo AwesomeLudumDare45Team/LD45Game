@@ -11,9 +11,12 @@ public class Flower : MonoBehaviour
     public float m_maxDistance;
     public float m_growFactor;
 
+    public Renderer m_meshRenderer;
+    public Vector2 m_saturationRange;
+    public Vector2 m_valueRange;
+
     private PlayerController m_player;
     private float m_maxSizeFactor;
-
 
     private void OnEnable()
     {
@@ -23,6 +26,15 @@ public class Flower : MonoBehaviour
         transform.position = RandomStartPosition();
         m_maxSizeFactor = Random.Range(m_sizeFactorVariationRange.x, m_sizeFactorVariationRange.y);
         transform.localScale = Vector3.zero;
+
+        transform.Rotate(Vector3.up, Random.Range(-180, 180));
+
+        RandomColor();
+    }
+
+    private void RandomColor()
+    {
+        m_meshRenderer.materials[2].SetColor("_BaseColor", Random.ColorHSV(0f, 1f, m_saturationRange.x, m_saturationRange.y, m_valueRange.x, m_valueRange.y));
     }
 
     private Vector3 RandomStartPosition()
@@ -58,8 +70,6 @@ public class Flower : MonoBehaviour
 			float deltaScale = targetSize - transform.localScale.magnitude;
 
 			transform.localScale += Vector3.one * deltaScale * m_growFactor * Time.deltaTime;
-
-            transform.Rotate(Vector3.up, Random.Range(-180, 180));
 		}
     }
 
