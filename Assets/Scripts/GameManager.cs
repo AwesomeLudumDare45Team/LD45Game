@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
 			float width = worldBoundaries.m_maxPosition.x - worldBoundaries.m_minPosition.x;
 			float height = worldBoundaries.m_maxPosition.y - worldBoundaries.m_minPosition.y;
-			Vector3 center = new Vector3(width / 2, height / 2, 0.0f);
+			Vector3 center = new Vector3(worldBoundaries.m_minPosition.x + width /2, worldBoundaries.m_minPosition.y + height / 2, 0.0f);
 
 			Gizmos.DrawCube(center, new Vector3(width, height, 0.1f));
 		}
