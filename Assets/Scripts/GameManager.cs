@@ -21,7 +21,17 @@ public class GameManager : MonoBehaviour
 
 	public TargetSeeker seeker;
 
-	private void OnDrawGizmos()
+    private AudioData audioData;
+
+    public static AudioData CurrentAudioData
+    {
+        get
+        {
+            return instance.audioData;
+        }
+    }
+
+    private void OnDrawGizmos()
 	{
 		if(drawBorder)
 		{
@@ -46,12 +56,14 @@ public class GameManager : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 
+        audioData = Resources.Load<AudioData>("ScriptableObjects/AudioData");
+
 		if (introScene)
 		{
 			player.SetActive(false);
 			StartCoroutine(LaunchStartTimeline());
 		}
-	}
+    }
 
 	IEnumerator LaunchStartTimeline()
 	{
