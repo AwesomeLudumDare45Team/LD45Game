@@ -54,9 +54,7 @@ public class PlayerController : MonoBehaviour
             if (rb.velocity.y < -10)
             {
                 StopRunSFX();
-            }
-            Debug.Log(rb.velocity.y);
-     
+            }  
         }
 	}
 
