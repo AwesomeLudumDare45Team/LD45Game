@@ -422,6 +422,7 @@ Transform:
   - {fileID: 7593774033701265645}
   - {fileID: 8292877786390225135}
   - {fileID: 2721444743192710364}
+  - {fileID: 2230047707997756130}
   m_Father: {fileID: 540767178525356009}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -469,6 +470,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_element: 2
+--- !u!1 &8961470318000310661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2230047707997756130}
+  - component: {fileID: 3126333710075855545}
+  m_Layer: 0
+  m_Name: Liere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2230047707997756130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8961470318000310661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7083725186127395128}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3126333710075855545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8961470318000310661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f5db64ee451ab4a9acfd3d57b9f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_element: 3
 --- !u!1 &9032112882424809089
 GameObject:
   m_ObjectHideFlags: 0
