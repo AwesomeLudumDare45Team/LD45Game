@@ -9,6 +9,7 @@ TagManager:
   - Weed
   - Tree
   - RecursiveEnable
+  - Liere
   layers:
   - Default
   - TransparentFX

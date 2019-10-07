@@ -1360,6 +1360,61 @@ PrefabInstance:
       propertyPath: UIPhazeBorders
       value: 
       objectReference: {fileID: 6554076560418302012}
+    - target: {fileID: 7430313533291143577, guid: a01c8f7cdff872e41b3d597841e03fdc,
+        type: 3}
+      propertyPath: firstItem
+      value: 
+      objectReference: {fileID: 1251600632}
+    - target: {fileID: 7430313534305650895, guid: a01c8f7cdff872e41b3d597841e03fdc,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430313534305650895, guid: a01c8f7cdff872e41b3d597841e03fdc,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430313534305650895, guid: a01c8f7cdff872e41b3d597841e03fdc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430313534305650895, guid: a01c8f7cdff872e41b3d597841e03fdc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430313534305650895, guid: a01c8f7cdff872e41b3d597841e03fdc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430313534305650895, guid: a01c8f7cdff872e41b3d597841e03fdc,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430313534305650895, guid: a01c8f7cdff872e41b3d597841e03fdc,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430313534305650895, guid: a01c8f7cdff872e41b3d597841e03fdc,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430313534305650895, guid: a01c8f7cdff872e41b3d597841e03fdc,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430313534305650892, guid: a01c8f7cdff872e41b3d597841e03fdc,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a01c8f7cdff872e41b3d597841e03fdc, type: 3}
 --- !u!114 &225585472 stripped
@@ -7747,6 +7802,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246756173}
   m_Mesh: {fileID: -2432090755550338912, guid: 1ea91d94cb53d8b47abc482f9f52c2f3, type: 3}
+--- !u!1 &1251600632 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1799318260656180935, guid: 052e7cb445308d7498aef63ca819b6f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1210994480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1258038752
 GameObject:
   m_ObjectHideFlags: 0
@@ -9401,7 +9462,7 @@ PrefabInstance:
     - target: {fileID: 1799318260656180938, guid: 052e7cb445308d7498aef63ca819b6f5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1799318260656180938, guid: 052e7cb445308d7498aef63ca819b6f5,
         type: 3}
@@ -18134,6 +18195,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 639940440}
+    - target: {fileID: 6733266069631646775, guid: dd9709ff99605c546ab26c5b5e423ef6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16666
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd9709ff99605c546ab26c5b5e423ef6, type: 3}
 --- !u!1 &6745030940520719795
@@ -18354,6 +18420,16 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 126599029}
+    - target: {fileID: 6184364048327119764, guid: 07065c4d4c67b1d4d93702abcfaeddf5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305274353589832180, guid: 07065c4d4c67b1d4d93702abcfaeddf5,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07065c4d4c67b1d4d93702abcfaeddf5, type: 3}
 --- !u!33 &7023017852183639151
