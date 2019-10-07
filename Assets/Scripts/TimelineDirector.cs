@@ -49,14 +49,14 @@ public class TimelineDirector : MonoBehaviour
 		GameManager.instance.isInTimeline = true;
 		UIPhazeBorders.SetActive(false);
 		camFollow.enabled = false;
+        StopMusic();
 
-		director.Play();
+        director.Play();
 		director.stopped += WhenEndTimelineEnded;
 	}
 
 	public void WhenEndTimelineEnded(PlayableDirector obj)
 	{
-        StopMusic();
 		Application.Quit();
     }
 
