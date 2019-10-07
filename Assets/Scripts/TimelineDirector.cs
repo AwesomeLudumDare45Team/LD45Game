@@ -11,6 +11,7 @@ public class TimelineDirector : MonoBehaviour
 	public PlayableAsset endTimeline;
 
 	public GameObject UIPhazeBorders;
+	public GameObject firstItem;
 
 	private void Awake()
 	{
@@ -24,6 +25,7 @@ public class TimelineDirector : MonoBehaviour
 		GameManager.instance.isInTimeline = true;
 		GameManager.instance.player.SetActive(false);
 		UIPhazeBorders.SetActive(false);
+		firstItem.SetActive(false);
 
 		director.Play();
 		director.stopped += WhenEnded;
@@ -35,5 +37,6 @@ public class TimelineDirector : MonoBehaviour
 		GameManager.instance.isInTimeline = false;
 		GameManager.instance.player.SetActive(true);
 		UIPhazeBorders.SetActive(true);
+		firstItem.SetActive(true);
 	}
 }
