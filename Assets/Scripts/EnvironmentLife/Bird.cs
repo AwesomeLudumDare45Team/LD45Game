@@ -17,6 +17,8 @@ public class Bird : MonoBehaviour
     private Vector3 m_basePosition;
     private bool m_impulse;
 
+    public Animator m_wasoAnimator;
+
     private void Start()
     {
         m_rb = GetComponent<Rigidbody>();
@@ -46,6 +48,7 @@ public class Bird : MonoBehaviour
 				float impulseFactor = Random.Range(m_impulseFactorRange.x, m_impulseFactorRange.y);
 				m_rb.AddForce(impulseFactor * Vector3.up, ForceMode.Impulse);
 				m_fallDistance = Random.Range(m_fallDistanceRange.x, m_fallDistanceRange.y);
+                m_wasoAnimator.SetTrigger("flap");
 			}
 		}
     }
