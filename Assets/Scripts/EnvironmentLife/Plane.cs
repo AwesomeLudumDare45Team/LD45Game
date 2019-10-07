@@ -47,6 +47,7 @@ public class Plane : MonoBehaviour
         if (m_direction == Direction.LEFT && !m_rotated || m_direction == Direction.RIGHT && m_rotated)
         {
             m_model.transform.Rotate(Vector3.up, 180);
+            m_model.transform.Rotate(Vector3.right, 90);
             m_rotated = (m_direction == Direction.LEFT);
         }
         m_model.transform.localScale *= Random.Range(m_sizeFactorVariationRange.x, m_sizeFactorVariationRange.y);
