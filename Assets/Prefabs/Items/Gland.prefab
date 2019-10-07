@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4246420829910513647}
   - component: {fileID: -7111797959641206906}
   - component: {fileID: 8010504914507325140}
-  - component: {fileID: 8808566694160515193}
+  - component: {fileID: 8541565650559464436}
   - component: {fileID: 8732044108244481561}
   - component: {fileID: 2391388004490315566}
+  - component: {fileID: 293193960253843241}
   m_Layer: 0
   m_Name: Gland
   m_TagString: Untagged
@@ -82,7 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &8808566694160515193
+--- !u!135 &8541565650559464436
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +91,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4246420829910513634}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -122,6 +123,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_modelGland: {fileID: 9174916631647248438}
   m_modelGoldenGland: {fileID: 8638668963284144068}
+--- !u!114 &293193960253843241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4246420829910513634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17014a3e6ca2fac49bb5bd55901e209d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5949611174855800443
 GameObject:
   m_ObjectHideFlags: 0
