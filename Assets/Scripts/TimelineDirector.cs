@@ -56,8 +56,8 @@ public class TimelineDirector : MonoBehaviour
 
 	public void WhenEndTimelineEnded(PlayableDirector obj)
 	{
-        //scene change / quit
         StopMusic();
+		Application.Quit();
     }
 
 
