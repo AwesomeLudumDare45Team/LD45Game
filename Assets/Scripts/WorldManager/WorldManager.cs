@@ -6,6 +6,8 @@ public class WorldManager : MonoBehaviour
 {
     public static WorldManager m_instance { get; private set; }
 
+    public int m_numItemToPickUp;
+
     public enum EnvironmentElement { GRASS, WEED, TREE, LIERE, MAX}
     [HideInInspector]
     public Dictionary<EnvironmentElement, string> m_elementTag = new Dictionary<EnvironmentElement, string>();

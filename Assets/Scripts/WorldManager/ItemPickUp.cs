@@ -61,6 +61,8 @@ public class ItemPickUp : MonoBehaviour
             }
         }
 
+        WorldManager.m_instance.m_numItemToPickUp--;
+
         if (!m_revertEffect && !m_debugDisableRemove)
         {
             if (m_deactivateNotDestroy)
