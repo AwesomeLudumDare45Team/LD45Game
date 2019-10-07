@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground_Mat2
+  m_Name: Pillar_Mat
   m_Shader: {fileID: -6465566751694194690, guid: 1331ec68c5ccc99459e31be6e63f0eaf,
     type: 3}
   m_ShaderKeywords: 
@@ -88,8 +88,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_A10909E1: {r: 0.3962264, g: 0.30729973, b: 0.17755428, a: 0}
-    - Color_CAB9B427: {r: 0, g: 0.4355469, b: 1, a: 0}
+    - Color_A10909E1: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 0}
+    - Color_CAB9B427: {r: 1.7411011, g: 0.19800758, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
