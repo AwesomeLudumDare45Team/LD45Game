@@ -28,7 +28,7 @@ public class ButterflyFlock : MonoBehaviour
     private void OnEnable()
     {
         m_camera = GameObject.FindGameObjectWithTag("CameraBase").GetComponent<CameraBehaviour>();
-        m_playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        m_playerRb = GameManager.instance.player.GetComponent<Rigidbody>();
         CreateFlock();
     }
 
@@ -71,10 +71,7 @@ public class ButterflyFlock : MonoBehaviour
     {
         Vector3 startPosition;
 
-        float deltaX = m_camera.cameraWidth / 2 + m_flockRadius * 1.1f;
-        if (m_playerRb.velocity.x < 0) deltaX = -deltaX;
-        startPosition.x = m_camera.transform.position.x + deltaX;
-        
+        startPosition.x = Random.Range(m_camera.cameraBoundaries.m_minPosition.x + m_flockRadius, m_camera.cameraBoundaries.m_maxPosition.x - m_flockRadius);
         startPosition.y = Random.Range(m_camera.cameraBoundaries.m_minPosition.y + m_flockRadius, m_camera.cameraBoundaries.m_maxPosition.y - m_flockRadius);
         startPosition.z = Random.Range(m_camera.transform.position.z + m_depthPositionRange.x, m_camera.transform.position.z + m_depthPositionRange.y); ;
 
