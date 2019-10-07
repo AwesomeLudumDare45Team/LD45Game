@@ -68,13 +68,16 @@ public class Plane : MonoBehaviour
 
     void Update()
     {
-        Vector3 speed = m_horizontalVelocity * Vector3.right;
-        m_rb.transform.position += speed * Time.deltaTime;
+		if (!GameManager.instance.isPaused)
+		{
+			Vector3 speed = m_horizontalVelocity * Vector3.right;
+			m_rb.transform.position += speed * Time.deltaTime;
 
-        UpdateTrail();
+			UpdateTrail();
 
-        if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, m_rb.transform.position, (m_trailSize + m_trailStartDistance) * 2.0f))
-            transform.parent.gameObject.SetActive(false);
+			if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, m_rb.transform.position, (m_trailSize + m_trailStartDistance) * 2.0f))
+				transform.parent.gameObject.SetActive(false);
+		}
     }
 
     private void UpdateTrail()

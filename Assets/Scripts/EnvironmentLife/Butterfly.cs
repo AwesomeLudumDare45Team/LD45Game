@@ -28,37 +28,41 @@ public class Butterfly : MonoBehaviour
 
     void Update()
     {
-        m_impulseTimer -= Time.deltaTime;
+		if (!GameManager.instance.isPaused)
+		{
+			m_impulseTimer -= Time.deltaTime;
 
-        Vector3 toCenter = m_flock.m_flockCenter - m_rb.position;
-        toCenter.z = 0;
+			Vector3 toCenter = m_flock.m_flockCenter - m_rb.position;
+			toCenter.z = 0;
 
-        if(m_impulseTimer < 0 || toCenter.magnitude > m_flock.m_flockRadius) {
-            float impulseFactor = Random.Range(m_impulseFactorRange.x, m_impulseFactorRange.y);
-            Vector3 impulse = Random.onUnitSphere;
-            impulse.z = 0;
+			if (m_impulseTimer < 0 || toCenter.magnitude > m_flock.m_flockRadius)
+			{
+				float impulseFactor = Random.Range(m_impulseFactorRange.x, m_impulseFactorRange.y);
+				Vector3 impulse = Random.onUnitSphere;
+				impulse.z = 0;
 
-            if(toCenter.y<0)
-                impulse.y = Mathf.Abs(impulse.y);
+				if (toCenter.y < 0)
+					impulse.y = Mathf.Abs(impulse.y);
 
-            
-            impulse *= impulseFactor;
 
-            if (toCenter.magnitude > m_flock.m_flockRadius && Vector3.Dot(impulse.normalized, toCenter.normalized) < 0.5)
-                impulse = impulseFactor * toCenter.normalized;
+				impulse *= impulseFactor;
 
-            if (impulse.y <0)
-                impulse.y /= 2;
+				if (toCenter.magnitude > m_flock.m_flockRadius && Vector3.Dot(impulse.normalized, toCenter.normalized) < 0.5)
+					impulse = impulseFactor * toCenter.normalized;
 
-            m_rb.AddForce( impulse, ForceMode.Impulse );
+				if (impulse.y < 0)
+					impulse.y /= 2;
 
-            m_impulseTimer = Random.Range(m_impulseTimerRange.x, m_impulseTimerRange.y);
+				m_rb.AddForce(impulse, ForceMode.Impulse);
 
-            if (m_flip != (m_rb.velocity.x > 0))
-                m_rb.transform.Rotate(Vector3.up, 180);
+				m_impulseTimer = Random.Range(m_impulseTimerRange.x, m_impulseTimerRange.y);
 
-        }
+				if (m_flip != (m_rb.velocity.x > 0))
+					m_rb.transform.Rotate(Vector3.up, 180);
 
-        m_rb.AddForce(m_gravityFactor*Vector3.down, ForceMode.Acceleration);
+			}
+
+			m_rb.AddForce(m_gravityFactor * Vector3.down, ForceMode.Acceleration);
+		}
     }
 }

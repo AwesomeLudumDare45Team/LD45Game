@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager instance { get; private set; }
 
+	public bool isPaused;
+
     public Boundaries worldBoundaries;
 
 	public bool drawBorder;
@@ -36,5 +38,8 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(this.gameObject);
 		}
+
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 	}
 }

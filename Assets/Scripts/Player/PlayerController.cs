@@ -31,16 +31,22 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
     {
-		Move();
-		CheckBorders();
+		if (!GameManager.instance.isPaused)
+		{
+			Move();
+			CheckBorders();
+		}
 	}
 
 	private void Update()
 	{
-		CheckGround();
-		Jump();
+		if (!GameManager.instance.isPaused)
+		{
+			CheckGround();
+			Jump();
 
-		UpdateAnimatorParameters();
+			UpdateAnimatorParameters();
+		}
 	}
 
 	void Move()

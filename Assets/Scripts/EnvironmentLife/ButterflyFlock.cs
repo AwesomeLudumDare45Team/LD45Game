@@ -39,15 +39,18 @@ public class ButterflyFlock : MonoBehaviour
 
     void Update()
     {
-        if (!m_camera.cameraBoundaries.IsInBoundariesAll(m_flockCenter, m_boundOffsetDeletion))
-        {
-            for (int i = 0; i < m_butterflies.Count; ++i)
-            {
-                Destroy(m_butterflies[i].gameObject);
-            }
-            m_butterflies.Clear();
-            gameObject.SetActive(false);
-        }
+		if (!GameManager.instance.isPaused)
+		{
+			if (!m_camera.cameraBoundaries.IsInBoundariesAll(m_flockCenter, m_boundOffsetDeletion))
+			{
+				for (int i = 0; i < m_butterflies.Count; ++i)
+				{
+					Destroy(m_butterflies[i].gameObject);
+				}
+				m_butterflies.Clear();
+				gameObject.SetActive(false);
+			}
+		}
     }
 
     void CreateFlock()

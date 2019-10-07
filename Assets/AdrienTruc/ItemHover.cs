@@ -20,16 +20,19 @@ public class ItemHover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		transform.position += new Vector3 (0, Mathf.Cos(Time.time) * 0.005f, 0);
-		if(mode == HoverMode.turn)
+		if (!GameManager.instance.isPaused)
 		{
-			transform.localEulerAngles += new Vector3(0, 1, 0);
-		}
-		else if(mode == HoverMode.oscillate)
-		{
-			transform.localEulerAngles += new Vector3(0, angleMod, 0);
-			if(transform.localEulerAngles.y <= -30.0f || transform.localEulerAngles.y >= 30.0f)
-				angleMod *= -1;
+			transform.position += new Vector3(0, Mathf.Cos(Time.time) * 0.005f, 0);
+			if (mode == HoverMode.turn)
+			{
+				transform.localEulerAngles += new Vector3(0, 1, 0);
+			}
+			else if (mode == HoverMode.oscillate)
+			{
+				transform.localEulerAngles += new Vector3(0, angleMod, 0);
+				if (transform.localEulerAngles.y <= -30.0f || transform.localEulerAngles.y >= 30.0f)
+					angleMod *= -1;
+			}
 		}
     }
 }
