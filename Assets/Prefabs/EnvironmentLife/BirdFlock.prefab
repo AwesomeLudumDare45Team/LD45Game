@@ -46,7 +46,7 @@ MonoBehaviour:
   m_prefabBird: {fileID: 878895869723156380, guid: 154b0dc84d7376e4daf8fd4859c2bf7f,
     type: 3}
   m_boundOffset: {x: 4, y: -0.5}
-  m_depthPositionRange: {x: 1, y: 2}
+  m_depthPositionRange: {x: 3, y: 5}
   m_baseHorizontalVelocityRange: {x: 8, y: 15}
   m_flockSizeRange: {x: 1, y: 3}
   m_birds: []
