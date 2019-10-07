@@ -14,7 +14,11 @@ public class WorldEffectBoundaries : WorldEffect
         if (m_drawBorder)
         {
             Gizmos.color = new Color(1.0f, 0.0f, 0.0f, 0.25f);
-            Gizmos.DrawCube(Vector3.zero, new Vector3(m_maxPosition.x - m_minPosition.x, m_maxPosition.y - m_minPosition.y, 0.1f));
+            float width = m_maxPosition.x - m_minPosition.x;
+			float height = m_maxPosition.y - m_minPosition.y;
+			Vector3 center = new Vector3(m_minPosition.x + width /2, m_minPosition.y + height / 2, 0.0f);
+
+			Gizmos.DrawCube(center, new Vector3(width, height, 0.1f));
         }
     }
 

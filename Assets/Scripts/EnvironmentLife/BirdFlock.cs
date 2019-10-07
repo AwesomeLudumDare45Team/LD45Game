@@ -36,27 +36,31 @@ public class BirdFlock : MonoBehaviour
 
     void Update()
     {
-        List<Bird> toRemove = new List<Bird>();
+		if (!GameManager.instance.isPaused)
+		{
+			List<Bird> toRemove = new List<Bird>();
 
-        bool stillAlive = false;
-        foreach(Bird bird in m_birds)
-        {
-            if(bird !=null)
-            {
-                if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, bird.transform.position, m_boundOffset))
-                {
-                    Destroy(bird.gameObject);
-                } else
-                {
-                    stillAlive = true;
-                }
-            }
-        }
+			bool stillAlive = false;
+			foreach (Bird bird in m_birds)
+			{
+				if (bird != null)
+				{
+					if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, bird.transform.position, m_boundOffset))
+					{
+						Destroy(bird.gameObject);
+					}
+					else
+					{
+						stillAlive = true;
+					}
+				}
+			}
 
-        if (!stillAlive)
-        {
-            gameObject.SetActive(false);
-        }
+			if (!stillAlive)
+			{
+				gameObject.SetActive(false);
+			}
+		}
     }
 
 

@@ -7,9 +7,19 @@ public class ItemPickUp : MonoBehaviour
     public List<WorldEffect> m_worldEffectList;
     public bool m_revertEffect = false;
     public bool m_debugDisableRemove;
-
     private bool m_deactivateNotDestroy = true;
-    
+
+    [SerializeField]
+    private float musicParameter;
+
+    [SerializeField]
+    private bool setMusicParameter = false;
+
+    [SerializeField]
+    private bool startMusic = false;
+
+    private FMOD.Studio.EventInstance musicInstance;
+
     void Start()
     {
         m_debugDisableRemove = false;
@@ -21,6 +31,18 @@ public class ItemPickUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PickUp();
+            FMODUnity.RuntimeManager.PlayOneShotAttached(GameManager.CurrentAudioData.collectItem, this.gameObject);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(GameManager.CurrentAudioData.envAppear, this.gameObject);
+
+            if (startMusic)
+            {
+                StartMusic();
+            }
+
+            if (setMusicParameter)
+            {
+                ChangeMusicParameter();
+            }
         }
     }
 
@@ -43,6 +65,21 @@ public class ItemPickUp : MonoBehaviour
                 gameObject.SetActive(false);
             else
                 Destroy(gameObject);
+        }
+    }
+
+    private void ChangeMusicParameter()
+    {
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName(GameManager.CurrentAudioData.musicParameter, musicParameter);
+    }
+
+    private void StartMusic()
+    {
+        if (FMODUnity.Extensions.PlaybackState(musicInstance) != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+        {
+            musicInstance = FMODUnity.RuntimeManager.CreateInstance(GameManager.CurrentAudioData.music);
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName(GameManager.CurrentAudioData.musicParameter, 0f);
+            musicInstance.start();
         }
     }
 }

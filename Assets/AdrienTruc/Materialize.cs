@@ -17,17 +17,18 @@ public class Materialize : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (value > -0.2 && active)
+		if (!GameManager.instance.isPaused)
 		{
-			value -= Time.deltaTime * speed;
-		}
+			if (value > -0.2 && active)
+			{
+				value -= Time.deltaTime * speed;
+			}
 
-		foreach (var material in GetComponent<Renderer>().materials)
-		{
-			material.SetFloat("_Materialize_Amount", value);
+			foreach (var material in GetComponent<Renderer>().materials)
+			{
+				material.SetFloat("_Materialize_Amount", value);
+			}
 		}
-		
-		
 	}
 
 	private void OnEnable()

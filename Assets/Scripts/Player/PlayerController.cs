@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	private Rigidbody rb;
-	private float distToGround;
+	private Collider coll;
+	private Animator anim;
 
 	//[HideInInspector]
 	public bool grounded;
@@ -21,22 +22,36 @@ public class PlayerController : MonoBehaviour
 
 	private float teleportOffset = 0.5f;
 
+    private FMOD.Studio.EventInstance runInstance, jumpInstance;
+
 	void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
-		distToGround = GetComponent<Collider>().bounds.extents.y;
+		coll = GetComponent<Collider>();
+		anim = GetComponent<Animator>();
 	}
 
 	void FixedUpdate()
     {
-		Move();
-		CheckBorders();
+		if (!GameManager.instance.isPaused)
+		{
+			Move();
+			CheckBorders();
+		}
 	}
 
 	private void Update()
 	{
-		CheckGround();
-		Jump();
+		if (!GameManager.instance.isPaused)
+		{
+			CheckGround();
+			Jump();
+
+			UpdateAnimatorParameters();
+
+            UpdateRunSFX();
+     
+        }
 	}
 
 	void Move()
@@ -46,9 +61,20 @@ public class PlayerController : MonoBehaviour
 		if(!grounded)
 			velocity *= airControlCoefficient;
 		rb.MovePosition(transform.position + velocity);
-	}
 
-	void CheckBorders()
+		transform.LookAt(transform.position + direction);
+
+        if (Mathf.Abs(direction.x) > 0.05f && velocity.y == 0)
+        {
+            PlayRunSFX();
+        }
+        else if (velocity.x == 0)
+        {
+            StopRunSFX();
+        }
+    }
+
+    void CheckBorders()
 	{
 		if (GameManager.instance == null)
 		{
@@ -65,7 +91,9 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetButtonDown("Jump") && grounded)
 		{
 			rb.velocity = Vector2.up * jumpVelocity;
-		}
+            StopRunSFX();
+            PlayJumpSFX();
+        }
 
 		if (rb.velocity.y < 0)
 			rb.velocity += Vector3.up * Physics.gravity.y * (fallingCoefficient - 1) * Time.deltaTime;
@@ -75,9 +103,61 @@ public class PlayerController : MonoBehaviour
 
 	void CheckGround()
 	{
-		if (Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f))
+		Vector3 leftRayPos = new Vector3(transform.position.x - coll.bounds.extents.x, transform.position.y + 0.1f, transform.position.z);
+		Vector3 rightRayPos = new Vector3(transform.position.x + coll.bounds.extents.x, transform.position.y + 0.1f, transform.position.z);
+
+		if (Physics.Raycast(leftRayPos, -Vector3.up, 0.2f) || Physics.Raycast(rightRayPos, -Vector3.up, 0.2f))
 			grounded = true;
 		else
 			grounded = false;
 	}
+
+	void UpdateAnimatorParameters()
+	{
+		anim.SetFloat("Vx", direction.x);
+		anim.SetFloat("Vy", rb.velocity.y);
+		anim.SetBool("Grounded", grounded);
+
+		if (!Input.GetButton("Jump"))
+			anim.SetFloat("JumpSpeed", 1.5f);
+		else
+			anim.SetFloat("JumpSpeed", 0.6f);
+
+	}
+
+    #region SFX
+
+    public void PlayRunSFX()
+    {
+        if (grounded && FMODUnity.Extensions.PlaybackState(runInstance) != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+        {
+            runInstance = FMODUnity.RuntimeManager.CreateInstance(GameManager.CurrentAudioData.playerRun);
+            runInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
+            runInstance.start();
+        }
+    }
+
+    public void StopRunSFX()
+    {
+        if (FMODUnity.Extensions.PlaybackState(runInstance) == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+        {
+            runInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            runInstance.release();
+        }
+    }
+
+    private void UpdateRunSFX()
+    {
+        if (FMODUnity.Extensions.PlaybackState(runInstance) == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+        {
+            runInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
+        }
+    }
+
+    private void PlayJumpSFX()
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached(GameManager.CurrentAudioData.playerJump, this.gameObject);
+    }
+
+    #endregion
 }

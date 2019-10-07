@@ -44,21 +44,21 @@ public class Flower : MonoBehaviour
 
     void Update()
     {
+		if (!GameManager.instance.isPaused)
+		{
+			float distance = Mathf.Abs(m_player.transform.position.x - transform.position.x);
+			if (distance > m_maxDistance)
+			{
+				gameObject.SetActive(false);
+				return;
+			}
+			float distanceFactor = Mathf.Pow((m_maxDistance - distance) / m_maxDistance, 2f);
+			float targetSize = m_maxSizeFactor * distanceFactor;
 
-        float distance = Mathf.Abs(m_player.transform.position.x - transform.position.x);
-        if (distance > m_maxDistance)
-        {
-            gameObject.SetActive(false);
-            return;
-        }
-        float distanceFactor = Mathf.Pow((m_maxDistance - distance) / m_maxDistance, 2f);
-        float targetSize = m_maxSizeFactor * distanceFactor;
+			float deltaScale = targetSize - transform.localScale.magnitude;
 
-        float deltaScale = targetSize - transform.localScale.magnitude;
-   
-        transform.localScale += Vector3.one * deltaScale * m_growFactor * Time.deltaTime;
-
-        
+			transform.localScale += Vector3.one * deltaScale * m_growFactor * Time.deltaTime;
+		}
     }
 
 }

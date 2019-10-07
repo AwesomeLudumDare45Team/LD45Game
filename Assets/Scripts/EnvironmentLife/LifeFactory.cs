@@ -32,23 +32,26 @@ public class LifeFactory : MonoBehaviour
 
     void Update()
     {
-        List<GameObject> deactivated = new List<GameObject>();
+		if (!GameManager.instance.isPaused)
+		{
+			List<GameObject> deactivated = new List<GameObject>();
 
-        foreach(GameObject go in m_poolActivated)
-        {
-            if (!go.activeSelf)
-            {
-                deactivated.Add(go);
-            }
-        }
+			foreach (GameObject go in m_poolActivated)
+			{
+				if (!go.activeSelf)
+				{
+					deactivated.Add(go);
+				}
+			}
 
-        foreach (GameObject go in deactivated)
-        {
-            m_poolActivated.Remove(go);
-            m_poolInstantiated.Add(go);
-        }
+			foreach (GameObject go in deactivated)
+			{
+				m_poolActivated.Remove(go);
+				m_poolInstantiated.Add(go);
+			}
 
-        Produce();
+			Produce();
+		}
     }
 
     protected virtual void Produce()
