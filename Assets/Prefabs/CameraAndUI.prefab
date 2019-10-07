@@ -720,7 +720,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6733266069631646774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7500}
+  m_LocalPosition: {x: 0, y: 0, z: -16666}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6733266069738449965}
@@ -975,7 +975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 142bcc93816f4c447a72ecfe8e2a1e4e, type: 2}
   m_Color: {r: 1, g: 0, b: 0, a: 0.49019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -1164,7 +1164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 508aab06ca764924589ce7b9634760c0, type: 2}
   m_Color: {r: 1, g: 0, b: 0, a: 0.49019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 142bcc93816f4c447a72ecfe8e2a1e4e, type: 2}
   m_Color: {r: 1, g: 0, b: 0, a: 0.49019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -1369,7 +1369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 508aab06ca764924589ce7b9634760c0, type: 2}
   m_Color: {r: 1, g: 0, b: 0, a: 0.49019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -2055,11 +2055,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4074885344844719540}
     m_Modifications:
-    - target: {fileID: 1287544620992905100, guid: 13fd25392779d4b41b33e99b1ef208ff,
-        type: 3}
-      propertyPath: m_Name
-      value: Audio Listener
-      objectReference: {fileID: 0}
     - target: {fileID: 3735567646807734049, guid: 13fd25392779d4b41b33e99b1ef208ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2114,6 +2109,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287544620992905100, guid: 13fd25392779d4b41b33e99b1ef208ff,
+        type: 3}
+      propertyPath: m_Name
+      value: Audio Listener
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13fd25392779d4b41b33e99b1ef208ff, type: 3}
