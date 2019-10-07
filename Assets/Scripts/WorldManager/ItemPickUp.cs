@@ -7,9 +7,8 @@ public class ItemPickUp : MonoBehaviour
     public List<WorldEffect> m_worldEffectList;
     public bool m_revertEffect = false;
     public bool m_debugDisableRemove;
-
     private bool m_deactivateNotDestroy = true;
-    
+
     void Start()
     {
         m_debugDisableRemove = false;
@@ -21,6 +20,8 @@ public class ItemPickUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PickUp();
+            FMODUnity.RuntimeManager.PlayOneShotAttached(GameManager.CurrentAudioData.collectItem, this.gameObject);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(GameManager.CurrentAudioData.envAppear, this.gameObject);
         }
     }
 

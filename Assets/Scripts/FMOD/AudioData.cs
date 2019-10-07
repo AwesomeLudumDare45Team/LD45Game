@@ -7,11 +7,18 @@ public class AudioData : ScriptableObject
 {
     [Header("Player")]
     [FMODUnity.EventRef]
-    public string test = null;
+    public string playerRun = null;
+
+    [FMODUnity.EventRef]
+    public string playerJump = null;
+
+    [FMODUnity.EventRef]
+    public string collectItem = null;
 
     [Header("Environment")]
     [FMODUnity.EventRef]
-    public string testEvent = null;
+    public string envAppear = null;
+
 
     [Header("Music")]
     [FMODUnity.EventRef]

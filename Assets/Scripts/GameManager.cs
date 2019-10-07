@@ -14,7 +14,17 @@ public class GameManager : MonoBehaviour
 
 	public TargetSeeker seeker;
 
-	private void OnDrawGizmos()
+    private AudioData audioData;
+
+    public static AudioData CurrentAudioData
+    {
+        get
+        {
+            return instance.audioData;
+        }
+    }
+
+    private void OnDrawGizmos()
 	{
 		if(drawBorder)
 		{
@@ -41,5 +51,7 @@ public class GameManager : MonoBehaviour
 
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
-	}
+
+        audioData = Resources.Load<AudioData>("ScriptableObjects/AudioData");
+    }
 }
