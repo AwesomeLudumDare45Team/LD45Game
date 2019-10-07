@@ -66,6 +66,7 @@ MonoBehaviour:
   m_impulseFactorRange: {x: 0.5, y: 2}
   m_impulseTimerRange: {x: 0.05, y: 0.5}
   m_gravityFactor: 3
+  m_growFactor: 2
   m_flock: {fileID: 0}
 --- !u!1 &4391769198690353139
 GameObject:

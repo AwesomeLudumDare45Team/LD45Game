@@ -9,6 +9,8 @@ public class Butterfly : MonoBehaviour
     public Vector2 m_impulseFactorRange;
     public Vector2 m_impulseTimerRange;
     public float m_gravityFactor;
+    public float m_growFactor;
+    private float m_targetSize;
 
     [HideInInspector]
     public ButterflyFlock m_flock;
@@ -21,9 +23,10 @@ public class Butterfly : MonoBehaviour
     private void Start()
     {
         m_rb = GetComponent<Rigidbody>();
-        m_model.transform.localScale *= Random.Range(m_sizeFactorVariationRange.x, m_sizeFactorVariationRange.y);
+        m_targetSize = m_rb.transform.localScale.magnitude * Random.Range(m_sizeFactorVariationRange.x, m_sizeFactorVariationRange.y);
         m_impulseTimer = Random.Range(m_impulseTimerRange.x, m_impulseTimerRange.y);
         m_flip = false;
+        m_rb.transform.localScale = Vector3.zero;
     }
 
     void Update()
@@ -63,6 +66,12 @@ public class Butterfly : MonoBehaviour
 			}
 
 			m_rb.AddForce(m_gravityFactor * Vector3.down, ForceMode.Acceleration);
-		}
+
+            if(m_rb.transform.localScale.magnitude < m_targetSize )
+            {
+                float deltaScale = m_targetSize - transform.localScale.magnitude;
+                m_rb.transform.localScale += Vector3.one * m_growFactor * deltaScale * Time.deltaTime;
+            }
+        }
     }
 }

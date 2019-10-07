@@ -11,7 +11,7 @@ public class FlowerFactory : LifeFactory
     {
         base.Init();
 
-        m_playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        m_playerController = GameManager.instance.player.GetComponent<PlayerController>();
     }
 
     protected override void Produce()

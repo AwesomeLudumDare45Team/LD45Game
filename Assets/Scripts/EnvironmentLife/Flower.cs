@@ -21,8 +21,8 @@ public class Flower : MonoBehaviour
     private void OnEnable()
     {
         m_camera = GameObject.FindGameObjectWithTag("CameraBase").GetComponent<CameraBehaviour>();
-        m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        
+        m_player = GameManager.instance.player.GetComponent<PlayerController>();
+
         transform.position = RandomStartPosition();
         m_maxSizeFactor = Random.Range(m_sizeFactorVariationRange.x, m_sizeFactorVariationRange.y);
         transform.localScale = Vector3.zero;
