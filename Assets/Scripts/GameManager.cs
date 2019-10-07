@@ -17,7 +17,12 @@ public class GameManager : MonoBehaviour
 		if(drawBorder)
 		{
 			Gizmos.color = new Color(1.0f, 0.0f, 0.0f, 0.25f);
-			Gizmos.DrawCube(Vector3.zero, new Vector3(worldBoundaries.m_maxPosition.x - worldBoundaries.m_minPosition.x, worldBoundaries.m_maxPosition.y - worldBoundaries.m_minPosition.y, 0.1f));
+
+			float width = worldBoundaries.m_maxPosition.x - worldBoundaries.m_minPosition.x;
+			float height = worldBoundaries.m_maxPosition.y - worldBoundaries.m_minPosition.y;
+			Vector3 center = new Vector3(width / 2, height / 2, 0.0f);
+
+			Gizmos.DrawCube(center, new Vector3(width, height, 0.1f));
 		}
 	}
 
