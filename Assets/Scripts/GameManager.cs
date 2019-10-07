@@ -46,9 +46,11 @@ public class GameManager : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 
-		/*player.SetActive(false);
-
-		StartCoroutine(LaunchStartTimeline());*/
+		if (introScene)
+		{
+			player.SetActive(false);
+			StartCoroutine(LaunchStartTimeline());
+		}
 	}
 
 	IEnumerator LaunchStartTimeline()
