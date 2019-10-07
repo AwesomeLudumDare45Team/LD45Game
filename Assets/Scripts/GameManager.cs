@@ -1,15 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager instance { get; private set; }
-
+	[HideInInspector]
 	public bool isPaused;
 
-    public Boundaries worldBoundaries;
+	public bool introScene;
+	public TimelineDirector director;
+	[HideInInspector]
+	public bool isInTimeline;
 
+	public GameObject player;
+
+    public Boundaries worldBoundaries;
 	public bool drawBorder;
 
 	public TargetSeeker seeker;
@@ -49,9 +56,17 @@ public class GameManager : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
-
         audioData = Resources.Load<AudioData>("ScriptableObjects/AudioData");
-    }
+		if (introScene)
+		{
+			player.SetActive(false);
+			StartCoroutine(LaunchStartTimeline());
+		}
+	}
+
+	IEnumerator LaunchStartTimeline()
+	{
+		yield return new WaitForEndOfFrame();
+		director.StartTimeline();
+	}
 }
