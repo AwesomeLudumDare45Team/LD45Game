@@ -64,7 +64,7 @@ public class Flower : MonoBehaviour
 				gameObject.SetActive(false);
 				return;
 			}
-			float distanceFactor = Mathf.Pow((m_maxDistance - distance) / m_maxDistance, 2f);
+			float distanceFactor = Mathf.Pow((m_maxDistance - distance) / m_maxDistance, 0.95f);
 			float targetSize = m_maxSizeFactor * distanceFactor;
 
 			float deltaScale = targetSize - transform.localScale.magnitude;

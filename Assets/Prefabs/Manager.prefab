@@ -46,6 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b104b2fd144b56c40b43f9ea45b287cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
+  introScene: 0
+  director: {fileID: 0}
+  isInTimeline: 0
+  player: {fileID: 0}
   worldBoundaries:
     m_minPosition: {x: -10, y: -5.625}
     m_maxPosition: {x: 10, y: 5.625}
@@ -170,8 +175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_lifePrefab: {fileID: 878895869723156380, guid: a1b7e42f103effe4abfd559b5f1c0ec2,
     type: 3}
-  m_poolSize: 10
-  m_timeToRespawn: {x: 0.1, y: 0.3}
+  m_poolSize: 20
+  m_timeToRespawn: {x: 0.05, y: 0.15}
   m_minPlayerSpeed: 0.001
 --- !u!114 &8434455510685263749
 MonoBehaviour:
