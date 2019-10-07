@@ -52,8 +52,13 @@ public class WorldEffectEnable : WorldEffect
             activate = WorldManager.m_instance.m_elementActivation[WorldManager.EnvironmentElement.TREE];
             deactivate = !activate;
         }
+        else if (_transform.CompareTag("Liere"))
+        {
+            activate = WorldManager.m_instance.m_elementActivation[WorldManager.EnvironmentElement.LIERE];
+            deactivate = !activate;
+        }
 
-        if(activate)
+        if (activate)
             _transform.gameObject.active = true;
         if (deactivate)
             _transform.gameObject.active = false;
