@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_worldEffectList:
-  - {fileID: 4246420831748627164}
+  - {fileID: 0}
   m_revertEffect: 0
   m_debugDisableRemove: 0
 --- !u!114 &8732044108244481561
