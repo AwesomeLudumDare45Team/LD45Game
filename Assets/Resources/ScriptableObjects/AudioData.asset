@@ -16,6 +16,6 @@ MonoBehaviour:
   playerJump: event:/player/jump
   collectItem: event:/player/collect_item
   envAppear: event:/env/stage_appear
-  music: 
+  music: event:/music
   localParameter: 
-  parameter: 
+  musicParameter: musicP

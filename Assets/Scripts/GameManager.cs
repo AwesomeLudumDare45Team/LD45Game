@@ -57,12 +57,13 @@ public class GameManager : MonoBehaviour
 		}
 
         audioData = Resources.Load<AudioData>("ScriptableObjects/AudioData");
+
 		if (introScene)
 		{
 			player.SetActive(false);
 			StartCoroutine(LaunchStartTimeline());
 		}
-	}
+    }
 
 	IEnumerator LaunchStartTimeline()
 	{

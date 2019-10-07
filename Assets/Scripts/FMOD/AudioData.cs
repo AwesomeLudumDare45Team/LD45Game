@@ -29,6 +29,6 @@ public class AudioData : ScriptableObject
 
     [Header("Global Parameters")]
     [FMODUnity.ParamRef]
-    public string parameter = null;
+    public string musicParameter = null;
 
 }
