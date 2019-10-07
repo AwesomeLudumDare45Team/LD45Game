@@ -58,6 +58,8 @@ public class Flower : MonoBehaviour
 			float deltaScale = targetSize - transform.localScale.magnitude;
 
 			transform.localScale += Vector3.one * deltaScale * m_growFactor * Time.deltaTime;
+
+            transform.Rotate(Vector3.up, Random.Range(-180, 180));
 		}
     }
 
