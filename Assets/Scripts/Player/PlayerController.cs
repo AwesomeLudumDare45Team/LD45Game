@@ -50,6 +50,12 @@ public class PlayerController : MonoBehaviour
 			UpdateAnimatorParameters();
 
             UpdateRunSFX();
+
+            if (rb.velocity.y < -10)
+            {
+                StopRunSFX();
+            }
+            Debug.Log(rb.velocity.y);
      
         }
 	}

@@ -13,10 +13,7 @@ public class ItemPickUp : MonoBehaviour
     private float musicParameter;
 
     [SerializeField]
-    private bool setMusicParameter = false;
-
-    [SerializeField]
-    private bool startMusic = false;
+    private bool setMusicParameter, startMusic, playSFX = false;
 
     private FMOD.Studio.EventInstance musicInstance;
 
@@ -31,8 +28,13 @@ public class ItemPickUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PickUp();
+
             FMODUnity.RuntimeManager.PlayOneShotAttached(GameManager.CurrentAudioData.collectItem, this.gameObject);
+
+            if (playSFX)
+            {           
             FMODUnity.RuntimeManager.PlayOneShotAttached(GameManager.CurrentAudioData.envAppear, this.gameObject);
+            }
 
             if (startMusic)
             {
