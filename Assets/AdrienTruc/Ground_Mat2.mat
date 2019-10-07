@@ -88,8 +88,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_A10909E1: {r: 0.3962264, g: 0.30729973, b: 0.17755428, a: 0}
-    - Color_CAB9B427: {r: 0, g: 0.4355469, b: 1, a: 0}
+    - Color_A10909E1: {r: 0.4811321, g: 0.390818, b: 0.26099148, a: 0}
+    - Color_CAB9B427: {r: 0.89411765, g: 1.2862746, b: 1.7411765, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
