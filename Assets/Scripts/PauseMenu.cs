@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
 	public GameObject resumeButton;
 	public EventSystem eS;
 
+    private FMOD.Studio.EventInstance pauseInstance;
+
 	void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape) && !GameManager.instance.isInTimeline)
@@ -23,7 +25,13 @@ public class PauseMenu : MonoBehaviour
 				GameManager.instance.isPaused = true;
 				menu.gameObject.SetActive(true);
 				eS.SetSelectedGameObject(resumeButton);
-			}
+
+                if (FMODUnity.Extensions.PlaybackState(pauseInstance) != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                { 
+                pauseInstance = FMODUnity.RuntimeManager.CreateInstance("snapshot:/Pause");
+                pauseInstance.start();
+                }
+            }
 		}
     }
 
@@ -32,7 +40,13 @@ public class PauseMenu : MonoBehaviour
 		Time.timeScale = 1.0f;
 		GameManager.instance.isPaused = false;
 		menu.gameObject.SetActive(false);
-	}
+
+        if (FMODUnity.Extensions.PlaybackState(pauseInstance) == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+        { 
+        pauseInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        pauseInstance.release();
+        }
+    }
 
 	public void Quit()
 	{
