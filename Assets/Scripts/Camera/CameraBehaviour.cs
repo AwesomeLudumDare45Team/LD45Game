@@ -38,26 +38,29 @@ public class CameraBehaviour : MonoBehaviour
 
     void FixedUpdate()
 	{
-        UpdateBoundaries();
+		if(!GameManager.instance.isPaused)
+		{
+			UpdateBoundaries();
 
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, target.position, smoothSpeed);
+			Vector3 smoothedPosition = Vector3.Lerp(transform.position, target.position, smoothSpeed);
 
-        if (GameManager.instance == null)
-        {
-            Debug.LogError("Missing Game Manager");
-            return;
-        }
-        Boundaries worldBoundaries = GameManager.instance.worldBoundaries;
+			if (GameManager.instance == null)
+			{
+				Debug.LogError("Missing Game Manager");
+				return;
+			}
+			Boundaries worldBoundaries = GameManager.instance.worldBoundaries;
 
-        Vector2 cameraSizeOffset = new Vector2(-cameraWidth / 2.0f, -cameraHeight / 2.0f);
+			Vector2 cameraSizeOffset = new Vector2(-cameraWidth / 2.0f, -cameraHeight / 2.0f);
 
-        left.enabled = worldBoundaries.DistanceToBoundary(Direction.LEFT, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
-        right.enabled = worldBoundaries.DistanceToBoundary(Direction.RIGHT, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
-        bottom.enabled = worldBoundaries.DistanceToBoundary(Direction.DOWN, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
-        top.enabled = worldBoundaries.DistanceToBoundary(Direction.UP, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
-        smoothedPosition = worldBoundaries.BoundPositionAll(smoothedPosition, cameraSizeOffset);
+			left.enabled = worldBoundaries.DistanceToBoundary(Direction.LEFT, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
+			right.enabled = worldBoundaries.DistanceToBoundary(Direction.RIGHT, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
+			bottom.enabled = worldBoundaries.DistanceToBoundary(Direction.DOWN, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
+			top.enabled = worldBoundaries.DistanceToBoundary(Direction.UP, smoothedPosition, cameraSizeOffset) < epsilonDisplay;
+			smoothedPosition = worldBoundaries.BoundPositionAll(smoothedPosition, cameraSizeOffset);
 
-        transform.position = smoothedPosition;
+			transform.position = smoothedPosition;
+		}
 	}
 
     private void UpdateBoundaries()

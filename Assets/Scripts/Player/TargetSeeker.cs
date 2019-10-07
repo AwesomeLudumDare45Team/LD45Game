@@ -16,6 +16,7 @@ public class TargetSeeker : MonoBehaviour
 
 	void Update()
     {
-		transform.LookAt(target);
+		if (!GameManager.instance.isPaused)
+			transform.LookAt(target);
     }
 }

@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
 	private float teleportOffset = 0.5f;
 
+    private FMOD.Studio.EventInstance runInstance, jumpInstance;
+
 	void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -31,16 +33,29 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
     {
-		Move();
-		CheckBorders();
+		if (!GameManager.instance.isPaused)
+		{
+			Move();
+			CheckBorders();
+		}
 	}
 
 	private void Update()
 	{
-		CheckGround();
-		Jump();
+		if (!GameManager.instance.isPaused)
+		{
+			CheckGround();
+			Jump();
 
-		UpdateAnimatorParameters();
+			UpdateAnimatorParameters();
+
+            UpdateRunSFX();
+
+            if (rb.velocity.y < -10)
+            {
+                StopRunSFX();
+            }  
+        }
 	}
 
 	void Move()
@@ -52,9 +67,18 @@ public class PlayerController : MonoBehaviour
 		rb.MovePosition(transform.position + velocity);
 
 		transform.LookAt(transform.position + direction);
-	}
 
-	void CheckBorders()
+        if (Mathf.Abs(direction.x) > 0.05f && velocity.y == 0)
+        {
+            PlayRunSFX();
+        }
+        else if (velocity.x == 0)
+        {
+            StopRunSFX();
+        }
+    }
+
+    void CheckBorders()
 	{
 		if (GameManager.instance == null)
 		{
@@ -71,7 +95,9 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetButtonDown("Jump") && grounded)
 		{
 			rb.velocity = Vector2.up * jumpVelocity;
-		}
+            StopRunSFX();
+            PlayJumpSFX();
+        }
 
 		if (rb.velocity.y < 0)
 			rb.velocity += Vector3.up * Physics.gravity.y * (fallingCoefficient - 1) * Time.deltaTime;
@@ -102,4 +128,40 @@ public class PlayerController : MonoBehaviour
 			anim.SetFloat("JumpSpeed", 0.6f);
 
 	}
+
+    #region SFX
+
+    public void PlayRunSFX()
+    {
+        if (grounded && FMODUnity.Extensions.PlaybackState(runInstance) != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+        {
+            runInstance = FMODUnity.RuntimeManager.CreateInstance(GameManager.CurrentAudioData.playerRun);
+            runInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
+            runInstance.start();
+        }
+    }
+
+    public void StopRunSFX()
+    {
+        if (FMODUnity.Extensions.PlaybackState(runInstance) == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+        {
+            runInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            runInstance.release();
+        }
+    }
+
+    private void UpdateRunSFX()
+    {
+        if (FMODUnity.Extensions.PlaybackState(runInstance) == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+        {
+            runInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
+        }
+    }
+
+    private void PlayJumpSFX()
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached(GameManager.CurrentAudioData.playerJump, this.gameObject);
+    }
+
+    #endregion
 }

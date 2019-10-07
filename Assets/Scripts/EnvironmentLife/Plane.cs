@@ -47,6 +47,7 @@ public class Plane : MonoBehaviour
         if (m_direction == Direction.LEFT && !m_rotated || m_direction == Direction.RIGHT && m_rotated)
         {
             m_model.transform.Rotate(Vector3.up, 180);
+            m_model.transform.Rotate(Vector3.right, 90);
             m_rotated = (m_direction == Direction.LEFT);
         }
         m_model.transform.localScale *= Random.Range(m_sizeFactorVariationRange.x, m_sizeFactorVariationRange.y);
@@ -68,13 +69,16 @@ public class Plane : MonoBehaviour
 
     void Update()
     {
-        Vector3 speed = m_horizontalVelocity * Vector3.right;
-        m_rb.transform.position += speed * Time.deltaTime;
+		if (!GameManager.instance.isPaused)
+		{
+			Vector3 speed = m_horizontalVelocity * Vector3.right;
+			m_rb.transform.position += speed * Time.deltaTime;
 
-        UpdateTrail();
+			UpdateTrail();
 
-        if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, m_rb.transform.position, (m_trailSize + m_trailStartDistance) * 2.0f))
-            transform.parent.gameObject.SetActive(false);
+			if (!m_camera.cameraBoundaries.IsInBoundaries(m_direction, m_rb.transform.position, (m_trailSize + m_trailStartDistance) * 2.0f))
+				transform.parent.gameObject.SetActive(false);
+		}
     }
 
     private void UpdateTrail()

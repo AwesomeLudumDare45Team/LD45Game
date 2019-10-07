@@ -1,18 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager instance { get; private set; }
+	[HideInInspector]
+	public bool isPaused;
+
+	public bool introScene;
+	public TimelineDirector director;
+	[HideInInspector]
+	public bool isInTimeline;
+
+	public GameObject player;
 
     public Boundaries worldBoundaries;
-
 	public bool drawBorder;
 
 	public TargetSeeker seeker;
 
-	private void OnDrawGizmos()
+    private AudioData audioData;
+
+    public static AudioData CurrentAudioData
+    {
+        get
+        {
+            return instance.audioData;
+        }
+    }
+
+    private void OnDrawGizmos()
 	{
 		if(drawBorder)
 		{
@@ -36,5 +55,19 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(this.gameObject);
 		}
+
+        audioData = Resources.Load<AudioData>("ScriptableObjects/AudioData");
+
+		if (introScene)
+		{
+			player.SetActive(false);
+			StartCoroutine(LaunchStartTimeline());
+		}
+    }
+
+	IEnumerator LaunchStartTimeline()
+	{
+		yield return new WaitForEndOfFrame();
+		director.StartTimeline();
 	}
 }

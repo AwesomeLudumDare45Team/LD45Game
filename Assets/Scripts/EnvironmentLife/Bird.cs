@@ -31,21 +31,22 @@ public class Bird : MonoBehaviour
 
     void Update()
     {
-        m_rb.AddForce(m_flock.m_baseHorizontalVelocity * Vector3.right, ForceMode.Force);
+		if (!GameManager.instance.isPaused)
+		{
+			m_rb.AddForce(m_flock.m_baseHorizontalVelocity * Vector3.right, ForceMode.Force);
 
-        if (m_impulse)
-        {
-            if (m_rb.velocity.y < 0 || m_rb.transform.position.y > (m_basePosition.y - m_fallDistance))
-                m_impulse = false;
-        }
-        else if ( m_rb.transform.position.y < (m_basePosition.y-m_fallDistance))
-        {
-            m_impulse = true;
-            float impulseFactor = Random.Range(m_impulseFactorRange.x, m_impulseFactorRange.y);
-            m_rb.AddForce(impulseFactor * Vector3.up, ForceMode.Impulse);
-            m_fallDistance = Random.Range(m_fallDistanceRange.x, m_fallDistanceRange.y);
-        }
-
-
+			if (m_impulse)
+			{
+				if (m_rb.velocity.y < 0 || m_rb.transform.position.y > (m_basePosition.y - m_fallDistance))
+					m_impulse = false;
+			}
+			else if (m_rb.transform.position.y < (m_basePosition.y - m_fallDistance))
+			{
+				m_impulse = true;
+				float impulseFactor = Random.Range(m_impulseFactorRange.x, m_impulseFactorRange.y);
+				m_rb.AddForce(impulseFactor * Vector3.up, ForceMode.Impulse);
+				m_fallDistance = Random.Range(m_fallDistanceRange.x, m_fallDistanceRange.y);
+			}
+		}
     }
 }
