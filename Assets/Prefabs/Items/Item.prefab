@@ -111,6 +111,10 @@ MonoBehaviour:
   - {fileID: 0}
   m_revertEffect: 0
   m_debugDisableRemove: 0
+  musicParameter: 0
+  setMusicParameter: 0
+  startMusic: 0
+  playSFX: 0
 --- !u!114 &8732044108244481561
 MonoBehaviour:
   m_ObjectHideFlags: 0
