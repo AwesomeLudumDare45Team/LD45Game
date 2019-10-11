@@ -18,27 +18,27 @@ public class Flower : MonoBehaviour
     private PlayerController m_player;
     private float m_maxSizeFactor;
 
-    private void OnEnable()
+    private void Start()
     {
         m_camera = GameObject.FindGameObjectWithTag("CameraBase").GetComponent<CameraBehaviour>();
+    }
+    private void OnEnable()
+    {
         m_player = GameManager.instance.player.GetComponent<PlayerController>();
-
         transform.position = RandomStartPosition();
         m_maxSizeFactor = Random.Range(m_sizeFactorVariationRange.x, m_sizeFactorVariationRange.y);
         transform.localScale = Vector3.zero;
 
         transform.Rotate(Vector3.up, Random.Range(-180, 180));
 
-        RandomColor();
-    }
-
-    private void RandomColor()
-    {
         m_meshRenderer.materials[2].SetColor("_BaseColor", Random.ColorHSV(0f, 1f, m_saturationRange.x, m_saturationRange.y, m_valueRange.x, m_valueRange.y));
     }
 
     private Vector3 RandomStartPosition()
     {
+        if (m_player == null)
+            return transform.position;
+
         Vector3 startPosition = m_player.transform.position;
 
         float deltaX = Random.Range(m_horizontalVariationRange.x, m_horizontalVariationRange.y);
