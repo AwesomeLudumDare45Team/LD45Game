@@ -49,14 +49,14 @@ public class TimelineDirector : MonoBehaviour
 		GameManager.instance.isInTimeline = true;
 		UIPhazeBorders.SetActive(false);
 		camFollow.enabled = false;
+        StopMusic();
 
-		director.Play();
+        director.Play();
 		director.stopped += WhenEndTimelineEnded;
 	}
 
 	public void WhenEndTimelineEnded(PlayableDirector obj)
 	{
-        StopMusic();
 		Application.Quit();
     }
 
@@ -66,5 +66,8 @@ public class TimelineDirector : MonoBehaviour
         var findMusic = firstItem.GetComponent<ItemPickUp>().musicInstance;
         findMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         findMusic.release();
+        FMOD.Studio.Bus sfxBus;
+        sfxBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
+        sfxBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }

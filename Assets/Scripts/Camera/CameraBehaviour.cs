@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class CameraBehaviour : MonoBehaviour
 {
-	[HideInInspector]
 	public Camera cam;
 
 	public float cameraWidth;
@@ -25,16 +24,11 @@ public class CameraBehaviour : MonoBehaviour
 
 	private void Start()
 	{
-		cam = transform.Find("Camera").GetComponent<Camera>();
 		cam.transform.position = cameraPositionOffset;
 		cam.transform.rotation = Quaternion.LookRotation(-this.cameraPositionOffset);
-	}
-
-	private void OnValidate()
-	{
-		transform.Find("Camera").GetComponent<Camera>().orthographicSize = cameraWidth * 0.28125f;
-		cameraHeight = cameraWidth * 0.5625f;
-	}
+        cam.orthographicSize = cameraWidth * 0.28125f;
+        cameraHeight = cameraWidth * 0.5625f;
+    }
 
     void FixedUpdate()
 	{

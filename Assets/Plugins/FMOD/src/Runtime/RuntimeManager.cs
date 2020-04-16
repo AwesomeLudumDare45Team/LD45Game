@@ -246,6 +246,8 @@ retry:
                 CheckInitResult(result, "FMOD.Studio.System.setAdvancedSettings");
             }
 
+            result = coreSystem.setDSPBufferSize(2048, 2);          
+
             result = studioSystem.initialize(virtualChannels, studioInitFlags, FMOD.INITFLAGS.NORMAL, IntPtr.Zero);
             if (result != FMOD.RESULT.OK && initResult == FMOD.RESULT.OK)
             {

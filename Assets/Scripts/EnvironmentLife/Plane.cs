@@ -29,11 +29,11 @@ public class Plane : MonoBehaviour
     {
         m_rb = GetComponent<Rigidbody>();
         m_rotated = false;
+        m_camera = GameObject.FindGameObjectWithTag("CameraBase").GetComponent<CameraBehaviour>();
     }
 
     private void OnEnable()
     {
-        m_camera = GameObject.FindGameObjectWithTag("CameraBase").GetComponent<CameraBehaviour>();
         m_direction = (Random.Range(0.0f, 1.0f) < 0.5f) ? Direction.LEFT : Direction.RIGHT;
 
         m_horizontalVelocity = Random.Range(m_horizontalVelocityRange.x, m_horizontalVelocityRange.y);
